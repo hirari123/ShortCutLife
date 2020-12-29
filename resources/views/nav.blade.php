@@ -1,23 +1,30 @@
 <!-- ナビゲーションバー -->
 
-<nav class="navbar navbar-expand navbar-light px-5" style="background-color: #fafafa;">
+<nav class="navbar navbar-expand navbar-light px-5" style="background-color: #ffffff;">
 
   <a class="navbar-brand text-dark" href="/"><i class="far fa-sticky-note mr-1 text-dark"></i>コーリツライフ</a>
 
   <ul class="navbar-nav ml-auto">
 
+    @guest
     <li class="nav-item">
-      <a class="nav-link text-dark" href="">ユーザー登録</a>
+      <a class="nav-link text-dark" href="{{ route('register') }}">ユーザー登録</a>
     </li>
+    @endguest
 
+    @guest
     <li class="nav-item">
-      <a class="nav-link text-dark" href="">ログイン</a>
+      <a class="nav-link text-dark" href="{{ route('login') }}">ログイン</a>
     </li>
+    @endguest
 
+    @auth
     <li class="nav-item">
       <a class="nav-link text-dark" href=""><i class="fas fa-pen mr-1"></i>投稿する</a>
     </li>
+    @endauth
 
+    @auth
     <!-- Dropdown -->
     <li class="nav-item dropdown">
       <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
@@ -25,8 +32,7 @@
         <i class="fas fa-user-circle text-dark"></i>
       </a>
       <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-        <button class="dropdown-item" type="button"
-                onclick="location.href=''">
+        <button class="dropdown-item" type="button" onclick="location.href=''">
           マイページ
         </button>
         <div class="dropdown-divider"></div>
@@ -35,9 +41,11 @@
         </button>
       </div>
     </li>
-    <form id="logout-button" method="POST" action="">
+    <form id="logout-button" method="POST" action="{{ route('logout') }}">
+      @csrf
     </form>
     <!-- Dropdown -->
+    @endauth
 
   </ul>
 
