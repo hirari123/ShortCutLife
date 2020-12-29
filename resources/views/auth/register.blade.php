@@ -76,12 +76,12 @@
               </div>
             </div>
 
-            <!-- ログインはこちら -->
+            <!-- ログインはこちら
             <div class="mt-0">
               <a href="{{ route('login') }}" class="card-text">
                 ログインはこちら
               </a>
-            </div>
+            </div> -->
 
           </form>
         </div>
