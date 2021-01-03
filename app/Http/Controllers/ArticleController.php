@@ -30,4 +30,24 @@ class ArticleController extends Controller
         $article->save();
         return redirect()->route('articles.index');
     }
+
+    // 記事更新画面を表示
+    public function edit(Article $article)
+    {
+        return view('articles.edit', ['article' => $article]);
+    }
+
+    // 記事更新処理
+    public function update(ArticleRequest $request, Article $article)
+    {
+        $article->fill($request->all())->save();
+        return redirect()->route('articles.index');
+    }
+
+    // 記事削除処理
+    public function destroy(Article $article)
+    {
+        $article->delete();
+        return redirect()->route('articles.index');
+    }
 }
