@@ -19,3 +19,9 @@ Route::get('/', 'ArticleController@index')->name('articles.index');
 
 // 記事投稿画面のルーティング
 Route::resource('/articles', 'ArticleController')->except(['index'])->middleware('auth');
+
+// 「いいね」機能のルーティング
+Route::prefix('articles')->name('articles.')->group(function() {
+  Route::put('/{article}/like', 'ArticleController@like')->name('like')->middleware('auth');
+  Route::delete('/{article}/like', 'ArticleController@unlike')->name('unlike')->middleware('auth');
+});
