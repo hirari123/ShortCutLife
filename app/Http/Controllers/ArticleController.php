@@ -63,7 +63,7 @@ class ArticleController extends Controller
         return view('articles.show', ['article' => $article]);
     }
 
-    // 「いいね」機能
+    // 「いいね」機能の追加
     public function like(Request $request, Article $article)
     {
         $article->likes()->detach($request->user()->id);
@@ -75,7 +75,6 @@ class ArticleController extends Controller
         ];
     }
 
-    // 「いいね」解除
     public function unlike(Request $request, Article $article)
     {
         $article->likes()->detach($request->user()->id);
