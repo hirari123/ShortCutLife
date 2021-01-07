@@ -1,13 +1,14 @@
-<!-- いいね機能 -->
-
 <template>
   <div>
-    <button type="button" class="btn m-0 p-1 shadow-none">
+    <button
+     type="button"
+     class="btn m-0 p-1 shadow-none"
+    >
       <i class="fas fa-heart mr-1"
-        :class="{'red-text':this.isLikedBy}"
+        :class="{'red-text':this.isLikedBy, 'animated heartBeat fast':this.gotToLike}"
         @click="clickLike"
-        >
-        </i>
+      >
+      </i>
     </button>
     {{ countLikes }}
   </div>
@@ -16,29 +17,30 @@
 <script>
   export default {
     props: {
-      initiallsLikedBy: {
-        type:Boolean,
-        default:false,
+      initialIsLikedBy: {
+        type: Boolean,
+        default: false,
       },
 
       initialCountLikes: {
-        type:Number,
-        default:0,
+        type: Number,
+        default: 0,
       },
 
       authorized: {
-        type:Boolean,
-        default:false,
+        type: Boolean,
+        default: false,
       },
 
       endpoint: {
-        type:String,
+        type: String,
       },
     },
     data() {
       return {
-        isLikedBy:this.initiallsLikedBy,
-        countLikes:this.initialCountLikes,
+        isLikedBy: this.initialIsLikedBy,
+        countLikes: this.initialCountLikes,
+        gotToLike: false,
       }
     },
 
@@ -53,19 +55,19 @@
           ? this.unlike()
           : this.like()
       },
-
       async like() {
         const response = await axios.put(this.endpoint)
 
         this.isLikedBy = true
         this.countLikes = response.data.countLikes
+        this.gotToLike = true 
       },
-
       async unlike() {
         const response = await axios.delete(this.endpoint)
 
         this.isLikedBy = false
         this.countLikes = response.data.countLikes
+         this.gotToLike = false
       },
     },
   }
