@@ -19,13 +19,12 @@ class Article extends Model
         return $this->belongsTo('App\User');
     }
 
-    // ArticleモデルからUserモデルにアクセス可能にする
+    // 記事を「いいね」済みか判定
     public function likes(): BelongsToMany
     {
         return $this->belongsToMany('App\User', 'likes')->withTimestamps();
     }
 
-    // ユーザーが「いいね」済みかどうかを判定する
     public function isLikedBy(?User $user): bool
     {
         return $user
@@ -33,7 +32,7 @@ class Article extends Model
             : false;
     }
 
-    // 現在の「いいね」数を算出する
+    // 現在のいいね数を算出する
     public function getCountLikesAttribute(): int
     {
         return $this->likes->count();
