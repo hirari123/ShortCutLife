@@ -11,17 +11,19 @@
 |
 */
 
-// 認証関連のルーティング
+// ユーザー新規登録、ログイン、ログアウト
 Auth::routes();
 
 // "/"のルーティング
 Route::get('/', 'ArticleController@index')->name('articles.index');
 
 // 記事投稿画面のルーティング
-Route::resource('/articles', 'ArticleController')->except(['index'])->middleware('auth');
+Route::resource('/articles', 'ArticleController')->except(['index', 'show'])->middleware('auth');
+Route::resource('/articles', 'ArticleController')->only(['show']);
 
-// 「いいね」機能のルーティング
-Route::prefix('articles')->name('articles.')->group(function() {
+
+// 「いいね」機能のルーティングを追加
+Route::prefix('articles')->name('articles.')->group(function () {
   Route::put('/{article}/like', 'ArticleController@like')->name('like')->middleware('auth');
   Route::delete('/{article}/like', 'ArticleController@unlike')->name('unlike')->middleware('auth');
 });
