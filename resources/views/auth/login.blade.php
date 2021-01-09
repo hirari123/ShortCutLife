@@ -8,8 +8,8 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-6">
-      <div class="login-box card mb-5">
-        <div class="login-header card-header float-left">
+      <div class="login-box card mt-5 mb-5">
+        <div class="login-header card-header bg-dark text-light">
           登録済みの方はこちらからログイン
         </div>
 
@@ -20,7 +20,7 @@
             <div class="form-group row">
               <label for="email" class="col-sm-4 col-form-label text-md-right">メールアドレス</label>
 
-              <div class="col-md-8">
+              <div class="col-md-6">
                 <input type="text" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" require autocomplete="email" autofocus>
 
                 @error('email')
@@ -34,7 +34,7 @@
             <div class="form-group row">
               <label for="password" class="col-mb-4 col-form-label text-md-right">パスワード</label>
 
-              <div class="col-md-8">
+              <div class="col-md-6">
                 <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                 @error('password')
@@ -59,7 +59,7 @@
 
             <div class="form-group row mb-0">
               <div class="col-md-8 offset-md-4">
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary active">
                   ログイン
                 </button>
               </div>
