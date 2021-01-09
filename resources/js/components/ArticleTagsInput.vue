@@ -23,10 +23,19 @@ export default {
   components: {
     VueTagsInput,
   },
+
+  // form.blade.phpから渡されたタグ情報を表示する
+  props: {
+    initialTags: {
+      type: Array,
+      default: [],
+    },
+  },
+
   data() {
     return {
       tag: '',
-      tags: [],
+      tags: this.initialTags,
       autocompleteItems: [{
         text: 'Spain',
       }, {
