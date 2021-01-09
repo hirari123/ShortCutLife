@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use App\Tag;
 use App\Http\Requests\ArticleRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -36,7 +37,7 @@ class ArticleController extends Controller
         // araticlesテーブルにレコードを新規登録
         $article->save();
         // タグの登録と記事・タグの紐付け
-        $request->tags->each(function($tagName) use($article) {
+        $request->tags->each(function($tagName) use ($article) {
             $tag = Tag::firstOrCreate(['name' => $tagName]);
             $article->tags()->attach($tag);
         });
@@ -47,13 +48,29 @@ class ArticleController extends Controller
     // 記事更新画面を表示
     public function edit(Article $article)
     {
-        return view('articles.edit', ['article' => $article]);
+
+        $tagNames = $article->tags->map(function($tag) {
+            return ['text' => $tag->name];
+        });
+
+        return view('articles.edit', [
+            'article' => $article,
+            'tagNames' => $tagNames,
+        ]);
     }
 
     // 記事更新処理
     public function update(ArticleRequest $request, Article $article)
     {
         $article->fill($request->all())->save();
+
+        // タグの登録と記事・タグの紐付け登録・削除を行う
+        $article->tags()->detach();
+        $request->tags->each(function ($tagName) use ($article) {
+            $tag = Tag::firstOrCreate(['name' => $tagName]);
+            $article->tags()->attach($tag);
+        });
+
         return redirect()->route('articles.index');
     }
 
