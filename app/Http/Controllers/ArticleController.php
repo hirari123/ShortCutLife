@@ -26,7 +26,14 @@ class ArticleController extends Controller
     // 記事投稿画面を表示
     public function create()
     {
-        return view('articles.create');
+        // タグテーブル全てのタグ情報をform.blade.phpに渡す
+        $allTagNames = Tag::all()->map(function ($tag) {
+            return ['text' =>$tag->name];
+        });
+
+        return view('articles.create', [
+            'allTagNames' => $allTagNames,
+        ]);
     }
 
     public function store(ArticleRequest $request, Article $article)
@@ -53,9 +60,14 @@ class ArticleController extends Controller
             return ['text' => $tag->name];
         });
 
+        $allTagNames = Tag::all()->map(function ($tag) {
+            return ['text' => $tag->name];
+        });
+
         return view('articles.edit', [
             'article' => $article,
             'tagNames' => $tagNames,
+            'allTagNames' => $allTagNames,
         ]);
     }
 
