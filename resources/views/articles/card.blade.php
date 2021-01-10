@@ -2,9 +2,13 @@
 
 <div class="card mt-3">
   <div class="card-header bg-warning text-dark py-2 d-flex bd-highlight">
-    <i class="fas fa-user-circle fa-3x mr-1 pr-2 bd-highlight"></i>
+    <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
+      <i class="fas fa-user-circle fa-3x mr-1 pr-2 bd-highlight"></i>
+    </a>
     <div class="font-weight-bold mt-4 bd-highlight">
-      {{ $article->user->name }}
+      <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
+        {{ $article->user->name }}
+      </a>
     </div>
     <div class="font-weight-lighter float-right ml-auto bd-highlight mt-4">
       {{ $article->created_at->format('Y/m/d H:i') }}
