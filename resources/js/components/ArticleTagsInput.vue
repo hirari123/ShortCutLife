@@ -30,23 +30,18 @@ export default {
       type: Array,
       default: [],
     },
+
+    // form.blade.phpから渡された全タグ情報をvueComponentsで自動補完にしようする
+    autocompleteItems: {
+      type: Array,
+      default: [],
+    },
   },
 
   data() {
     return {
       tag: '',
       tags: this.initialTags,
-      autocompleteItems: [{
-        text: 'Spain',
-      }, {
-        text: 'France',
-      }, {
-        text: 'USA',
-      }, {
-        text: 'Germany',
-      }, {
-        text: 'China',
-      }],
     };
   },
   computed: {
@@ -62,6 +57,7 @@ export default {
   },
 };
 </script>
+
 <style lang="css" scoped>
   .vue-tags-input {
     max-width: inherit;
