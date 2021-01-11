@@ -19,6 +19,19 @@ class UserController extends Controller
         ]);
     }
 
+    // 「いいねした記事一覧を表示した状態のユーザーページ」表示のアクションメソッドを追加
+    public function likes(string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        $articles = $user->likes->sortByDesc('created_at');
+
+        return view('users.likes', [
+            'user' => $user,
+            'articles' => $articles,
+        ]);
+    }
+
     // フォロー機能のアクションメソッドを追加
     public function follow(Request $request, string $name)
     {
