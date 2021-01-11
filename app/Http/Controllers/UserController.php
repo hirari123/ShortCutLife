@@ -19,7 +19,7 @@ class UserController extends Controller
     // フォロー機能のアクションメソッドを追加
     public function follow(Request $request, string $name)
     {
-        $user = User::where('name', $name)->first;
+        $user = User::where('name', $name)->first();
 
         if ($user->id === $request->user()->id)
         {
