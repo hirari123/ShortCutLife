@@ -15,12 +15,13 @@
 Auth::routes();
 
 // "/"のルーティング
-Route::get('/', 'ArticleController@index')->name('articles.index');
+Route::get('/', function () {
+  return view('top');
+});
 
 // 記事投稿画面のルーティング
 Route::resource('/articles', 'ArticleController')->except(['index', 'show'])->middleware('auth');
 Route::resource('/articles', 'ArticleController')->only(['show']);
-
 
 // 「いいね」機能のルーティングを追加
 Route::prefix('articles')->name('articles.')->group(function () {
