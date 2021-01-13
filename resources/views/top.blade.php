@@ -2,11 +2,11 @@
 
 @extends('app')
 
-@section('title' 'トップ')
+@section('title', 'トップ画面')
 
 @section('content')
-  @include('nav')
-  <div class="contaniner">
-    <h1>Hello world</h1>
-  </div>
+  <header class="header-container">
+    helloworld
+  </header>
+
 @endsection
