@@ -4,9 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>
-      @yield('title')
-    </title>
+    
+    <title>@yield('title')</title>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -16,12 +15,22 @@
 
     <!-- Material Design Bootstrap -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.8.11/css/mdb.min.css" rel="stylesheet">
+
+    <!-- トップページのCSS -->
+    <link rel="stylesheet" href="{{ asset('/assets/css/app.css') }}">
     
   </head>
 
   <body>
     <div id="app">
       @yield('content')
+      <!-- ナビゲーションバー -->
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-laravel py-2">
+        <!-- サイトロゴ -->
+        <a href="#" class="navbar-brand">
+          {{ config('app.name', 'コーリツライフ') }}
+        </a>
+      </nav>
     </div>
 
     <!-- JavaScript -->
