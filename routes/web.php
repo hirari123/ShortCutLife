@@ -46,3 +46,10 @@ Route::prefix('users')->name('users.')->group(function () {
     Route::delete('/{name}/follow', 'UserController@unfollow')->name('unfollow');
   });
 });
+
+// ゲストユーザーログイン
+Route::post('login/guest', 'Auth\LoginController@guestLogin')->name('login.guest');
+
+Route::get('/sass', function() {
+  return view('top');
+});
