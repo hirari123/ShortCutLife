@@ -14,7 +14,7 @@
         </div>
 
         <div class="login-body card-body">
-          <form method="POST" action="{{ route('login') }}">
+          <form method="post" action="{{ route('login') }}">
             @csrf
 
             <div class="form-group row">
@@ -39,7 +39,7 @@
 
                 @error('password')
                 <span class="invalid-feedback" role="alert">
-                  <strong>{{ $message}}</strong>
+                  <strong>{{ $message }}</strong>
                 </span>
                 @enderror
               </div>
@@ -59,7 +59,7 @@
 
             <div class="form-group row mb-0">
               <div class="col-md-8 offset-md-4">
-                <button type="submit" class="btn btn-primary active">
+                <button type="submit" class="btn btn-primary btn-rounded active">
                   ログイン
                 </button>
               </div>
@@ -71,3 +71,4 @@
     </div>
   </div>
 </div>
+@endsection
