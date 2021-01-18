@@ -50,6 +50,6 @@ Route::prefix('users')->name('users.')->group(function () {
 // ゲストユーザーログイン
 Route::post('login/guest', 'Auth\LoginController@guestLogin')->name('login.guest');
 
-Route::get('/sass', function() {
-  return view('top');
-});
+// Route::get('/sass', function() {
+//   return view('sass');
+// });
