@@ -15,9 +15,7 @@
 Auth::routes();
 
 // "/"のルーティング
-Route::get('/', function () {
-  return view('top');
-});
+Route::get('/', 'ArticleController@index');
 
 // 記事投稿画面のルーティング
 Route::resource('/articles', 'ArticleController')->except(['index', 'show'])->middleware('auth');
