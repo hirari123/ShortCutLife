@@ -23,18 +23,36 @@
 
   <body>
     <div id="app">
-      @yield('content')
-      <!-- ナビゲーションバー -->
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark navbar-laravel py-2">
-        <!-- サイトロゴ -->
-        <a href="#" class="navbar-brand">
-          {{ config('app.name', 'コーリツライフ') }}
-        </a>
-      </nav>
+      <header id="js-pageheader" class="pageheader">
+        <div class="pageheader-inner">
+          <div class="pageheader-col">
+            <h1 class="pageheader-logo">
+              <a href="/"></a>
+            </h1>
+            <div class="pageheader-search">
+              <form method="get" name="event" action="">
+                <input id="kw_search" type="text" class="pageheader-search-input" name="keyword" autocomplete="off" placeholder="イベント検索" value="">
+                <button id="searchBtn" class="pageheader-search-btn" type="submit">
+                  <i class="fa fa-search" aria-label="キーワード検索する"></i>
+                </button>
+              </form>
+              <div id="suggest" style="display: none;"></div>
+            </div>
+          </div>
+          <div class="pageheader-col">
+            <a href="">ログイン</a>
+            |
+            <a href="">新規会員登録</a>
+            |
+            <a href="">ゲストログイン</a>
+          </div>
+        </div>
+      </header>
+        @yield('content')
     </div>
 
     <!-- JavaScript -->
-    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ mix('/assets/js/app.js') }}"></script>
 
     <!-- JQuery -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
