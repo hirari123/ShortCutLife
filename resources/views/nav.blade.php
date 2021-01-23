@@ -2,19 +2,23 @@
 
 <nav class="navbar navbar-expand navbar-light px-5" style="background-color: #ffffff;">
 
-  <a class="navbar-brand text-dark" href="/"><i class="far fa-sticky-note mr-1 text-dark"></i>コーリツライフ</a>
+  <a class="navbar-brand text-dark" href="/"><i class="far fa-sticky-note mr-1 text-dark"></i>CHOT PLAY</a>
 
   <ul class="navbar-nav ml-auto">
 
     @guest
     <li class="nav-item">
-      <a class="nav-link text-dark" href="{{ route('register') }}">ユーザー登録</a>
+      <a class="nav-link text-dark" href="{{ route('register') }}">
+        <i class="fas fa-user-plus"></i>ユーザー登録
+      </a>
     </li>
     @endguest
 
     @guest
     <li class="nav-item">
-      <a class="nav-link text-dark" href="{{ route('login') }}">ログイン</a>
+      <a class="nav-link text-dark" href="{{ route('login') }}">
+      <i class="fas fa-sign-in-alt"></i>ログイン
+      </a>
     </li>
     @endguest
 
