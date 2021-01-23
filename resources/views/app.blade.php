@@ -27,10 +27,11 @@
         <div class="pageheader-inner">
           <div class="pageheader-col">
             <h1 class="pageheader-logo">
-              <a href="/"></a>
+              <a href="/">CHOT PLAY</a>
             </h1>
             <div class="pageheader-search">
               <form method="get" name="event" action="">
+                @csrf
                 <input id="kw_search" type="text" class="pageheader-search-input" name="keyword" autocomplete="off" placeholder="イベント検索" value="">
                 <button id="searchBtn" class="pageheader-search-btn" type="submit">
                   <i class="fa fa-search" aria-label="キーワード検索する"></i>
@@ -39,13 +40,55 @@
               <div id="suggest" style="display: none;"></div>
             </div>
           </div>
+
           <div class="pageheader-col">
-            <a href="">ログイン</a>
+            <div class="pageheader-login">
+              <ul>
+
+                @guest
+                <li>
+                  <a href="{{ route('login') }}">ログイン</a>
+                </li>
+                |
+                @endguest
+
+                @guest
+                <li>
+                  <a href="{{ route('register') }}">新規会員登録</a>
+                </li>
+                |
+                @endguest
+
+                @guest
+                <li>
+                  <a href="">ゲストログイン</a>
+                </li>
+                @endguest
+
+              </ul>
+            </div>
+
+            @auth
+            <div class="pageheader-login">
+              <a href="{{ route('articles.create') }}">練習会を開く</a>
+            </div>
             |
-            <a href="">新規会員登録</a>
+            @endauth
+
+            @auth
+            <button class="dropdown-item" type="button" onclick="location.href='{{ route("users.show", ["name" => Auth::user()->name]) }}'">
+              マイページ
+            </button>
             |
-            <a href="">ゲストログイン</a>
+            @endauth
+
+            @auth
+            <button form="logout-button" class="dropdown-item" type="submit">
+              ログアウト
+            </button>
+            @endauth
           </div>
+          
         </div>
       </header>
         @yield('content')
