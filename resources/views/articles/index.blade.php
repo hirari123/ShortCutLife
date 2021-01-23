@@ -5,8 +5,8 @@
 @section('title', '記事一覧')
 
 @section('content')
-  @include('nav')
   <div class="container">
+    <img src="{{ asset('/assets/images/meeting-2954348_1280.jpg') }}" alt="メイン画像">
     @foreach($articles as $article)
 
       @include('articles.card')
