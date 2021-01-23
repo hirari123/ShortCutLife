@@ -4,10 +4,10 @@
 
 @section('title', 'ログイン')
 
-@section('login_form')
+@section('content')
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-6">
+    <div class="col-md-6 mt-5">
       <div class="login-box card mt-5 mb-5">
         <div class="login-header card-header bg-dark text-light">
           登録済みの方はこちらからログイン
