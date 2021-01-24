@@ -11,7 +11,7 @@
       コーリツライフ
     </a>
   </nav>
-  
+
   <div class="top-contents my-0">
     <div class="top-wrapper" style="color: #fafafa;">
       <div class="bg-opacity text-dark">
@@ -54,7 +54,7 @@
               </div>
             </div>
           </div>
-          
+        
           @yield('login_form')
 
         </div>
