@@ -1,6 +1,6 @@
 <!-- 記事1件分の表示 -->
 
-<div class="card mt-3 mr-5">
+<div class="card mt-3">
   <div class="card-header bg-warning text-dark py-2 d-flex bd-highlight">
     <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
       <i class="fas fa-user-circle fa-3x mr-1 pr-2 bd-highlight"></i>
@@ -61,7 +61,7 @@
     <!-- modal -->
   @endif
 
-  <div class="card-body pt-0">
+  <div class="card-body pt-0 mt-3">
     <h3 class="h4 card-title">
       <a class="text-dark" href="{{ route('articles.show', ['article' => $article]) }}">
         {{ $article->title }}
