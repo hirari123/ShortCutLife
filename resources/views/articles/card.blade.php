@@ -5,7 +5,7 @@
     <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
       <i class="fas fa-user-circle fa-3x mr-1 pr-2 bd-highlight"></i>
     </a>
-    <div class="font-weight-bold mt-4 bd-highlight">
+    <div class="font-weight-bold mt-3 bd-highlight">
       <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
         {{ $article->user->name }}
       </a>
@@ -61,7 +61,7 @@
     <!-- modal -->
   @endif
 
-  <div class="card-body pt-0 mt-3">
+  <div class="card-body pt-0 mt-1">
     <h3 class="h4 card-title">
       <a class="text-dark" href="{{ route('articles.show', ['article' => $article]) }}">
         {{ $article->title }}
