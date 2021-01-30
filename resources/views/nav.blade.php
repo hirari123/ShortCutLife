@@ -1,73 +1,54 @@
 <!-- ナビゲーションバー -->
+  <nav class="navbar navbar-expand navbar-dark blue-gradient">
+    <a class="navbar-brand mr-auto" href="/"><i class="far fa-sticky-note mr-1"></i>CHOT PLAY</a>
+    <ul class="navbar-nav ml-auto">
 
-<header id="js-pageheader" class="pageheader">
-  <div class="pageheader-inner">
-    <div class="pageheader-col">
-      <h1 class="pageheader-logo">
-        <a href="/">CHOT PLAY</a>
-      </h1>
-      <div class="pageheader-search">
-        <form method="get" name="event" action="">
-          @csrf
-          <input id="kw_search" type="text" class="pageheader-search-input" name="keyword" autocomplete="off" placeholder="イベント検索" value="">
-          <button id="searchBtn" class="pageheader-search-btn" type="submit">
-            <i class="fa fa-search" aria-label="キーワード検索する"></i>
+      @guest
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('register') }}"><i class="fas fa-user-plus mr-1"></i>ユーザー登録</a>
+      </li>
+      @endguest
+
+      @guest
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('login') }}"><i class="fas fa-sign-in-alt mr-1"></i>ログイン</a>
+      </li>
+      @endguest
+
+      @guest
+      <li class="nav-item bg-default rounded">
+        <a class="nav-link waves-effect waves-light" href="{{ route('login.guest') }}"><i class="fas fa-user-check mr-1"></i>ゲストログイン</a>
+      </li>
+      @endguest
+
+      @auth
+      <li class="nav-item">
+        <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i>投稿する</a>
+      </li>
+      @endauth
+
+      @auth
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-user-circle"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+          <button class="dropdown-item" type="button" onclick="location.href='{{ route("users.show", ["name" => Auth::user()->name]) }}'">
+            マイページ
           </button>
-        </form>
-        <div id="suggest" style="display: none;"></div>
-      </div>
-    </div>
-
-    <div class="pageheader-col">
-      <div class="pageheader-login">
-        <ul>
-
-          @guest
-          <li>
-            <a href="{{ route('login') }}">ログイン</a>
-          </li>
-          |
-          @endguest
-
-          @guest
-          <li>
-            <a href="{{ route('register') }}">新規会員登録</a>
-          </li>
-          |
-          @endguest
-
-          @guest
-          <li>
-            <a href="">ゲストログイン</a>
-          </li>
-          @endguest
-
-        </ul>
-      </div>
-
-      @auth
-      <div class="pageheader-login">
-        <a href="{{ route('articles.create') }}">練習会を開く</a>
-      </div>
-      |
-      @endauth
-
-      @auth
-      <button class="dropdown-item" type="button" onclick="location.href='{{ route("users.show", ["name" => Auth::user()->name]) }}'">
-        マイページ
-      </button>
-      |
-      @endauth
-
-      @auth
-      <button form="logout-button" class="dropdown-item" type="submit">
-        ログアウト
-      </button>
+          <div class="dropdown-divider"></div>
+          <button form="logout-button" class="dropdown-item" type="submit">
+            ログアウト
+          </button>
+        </div>
+      </li>
       <form id="logout-button" method="POST" action="{{ route('logout') }}">
         @csrf
       </form>
+      <!-- Dropdown -->
       @endauth
-    </div>
-    
-  </div>
-</header>
+
+    </ul>
+  </nav>
