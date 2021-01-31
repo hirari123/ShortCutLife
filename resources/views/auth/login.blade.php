@@ -32,7 +32,7 @@
             </div>
 
             <div class="form-group row">
-              <label for="password" class="col-mb-4 col-form-label text-md-right">パスワード</label>
+              <label for="password" class="col-sm-4 col-form-label text-md-right">パスワード</label>
 
               <div class="col-md-6">
                 <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
@@ -45,7 +45,7 @@
               </div>
             </div>
 
-            <div class="form-group row">
+            <div class="form-group row ml-3">
               <div class="col-md-8 offset-md-4">
                 <div class="check-box">
                   <input type="checkbox" class="form-check-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
