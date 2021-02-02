@@ -46,8 +46,5 @@ Route::prefix('users')->name('users.')->group(function () {
 });
 
 // ゲストユーザーログイン
-Route::post('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
+Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
 
-// Route::get('/sass', function() {
-//   return view('sass');
-// });
