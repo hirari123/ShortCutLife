@@ -1,7 +1,21 @@
 <!-- ナビゲーションバー -->
-  <nav class="navbar navbar-expand navbar-dark blue-gradient">
-    <a class="navbar-brand mr-auto" href="/"><i class="far fa-sticky-note mr-1"></i>CHOT PLAY</a>
+  <nav class="navbar navbar-expand navbar-dark fixed-top blue-gradient">
+    <a class="navbar-brand mr-auto" href="/"><i class="fas fa-bullhorn mr-1"></i>CHOT PLAY</a>
     <ul class="navbar-nav ml-auto">
+
+      <!-- @guest
+      <li class="nav-item mr-5">
+        <div class="input-group">
+          <div class="form-outline">
+            <input type="search" id="form1" class="form-control">
+            <label class="form-label" for="form1">Search</label>
+          </div>
+          <button type="button" class="btn btn-primary">
+            <i class="fas fa-search"></i>
+          </button>
+        </div>
+      </li>
+      @endguest -->
 
       @guest
       <li class="nav-item">
