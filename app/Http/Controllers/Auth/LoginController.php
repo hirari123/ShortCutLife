@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\User;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -39,12 +40,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    // // ログイン後のリダイレクト先を指定
-    // public function redirectPath()
-    // {
-    //     return '/articles/index';
-    // }
-
     // ゲストユーザー用のユーザーIDを定数として定義
     private const GUEST_USER_ID = 1;
 
@@ -59,10 +54,4 @@ class LoginController extends Controller
         return redirect('/');
     }
 
-    // ゲストログインを追加
-    // public function guestLogin(Request $request)
-    // {
-    //     Auth::attempt(['email' => $request->input('email'), 'password' => $request->input('password')]);
-    //     return recirect('/');
-    // }
 }
