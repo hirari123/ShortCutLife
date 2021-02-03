@@ -10004,106 +10004,40 @@ h3 {
     border-color: #dee2e6;
   }
 }
-.pageheader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  min-width: 1220px;
-  background-color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 999;
-}
-.pageheader .pageheader-inner {
-  display: flex;
-  justify-content: space-between;
-  width: 1220px;
-  height: 60px;
-  padding: 0 10px 0;
-  margin-left: auto;
-  margin-right: auto;
-}
-.pageheader .pageheader-inner .pageheader-col {
-  display: flex;
-  align-items: center;
-  height: 100%;
-}
-.pageheader .pageheader-inner .pageheader-col .pageheader-logo {
-  flex-shrink: 0;
-  width: 140px;
-  margin-right: 30px;
-  font-size: 24px;
-}
-.pageheader .pageheader-inner .pageheader-col .pageheader-logo a {
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer;
-}
-.pageheader .pageheader-inner .pageheader-col .pageheader-search {
-  flex-shrink: 0;
-  position: relative;
-  margin-right: 30px;
-}
-.pageheader .pageheader-inner .pageheader-col .pageheader-search form {
-  display: block;
-}
-.pageheader .pageheader-inner .pageheader-col .pageheader-search form input[type=text].pageheader-search-input {
-  width: 240px;
-  height: 30px;
-  padding: 0 40px 0 10px;
-  border-color: #e7ecef;
-  border-radius: 20px;
-  box-shadow: none;
-  background-color: #f7f9fb;
-  vertical-align: bottom;
-  transition: all 0.2s;
-}
-.pageheader .pageheader-inner .pageheader-col .pageheader-search form .pageheader-search-btn {
-  position: absolute;
-  top: 1px;
-  right: 4px;
-  padding: 0px 8px;
-  color: #a9aab9;
-  font-size: 18px;
-}
-.pageheader .pageheader-inner .pageheader-col .pageheader-search form .pageheader-search-btn .pageheader-search-btn > i {
-  vertical-align: 1px;
-  transition: all 0.2s;
-}
-.pageheader .pageheader-inner .pageheader-col .pageheader-search #suggest {
-  position: absolute;
-  color: #666;
-  background-color: #fff;
-  border: 1px solid #ddd;
-  font-size: 14px;
-  min-width: 203px;
-  top: 35px;
-  left: 0;
-  z-index: 1000;
-}
-.pageheader .pageheader-inner .pageheader-col .pageheader-login {
-  font-size: 12px;
-  white-space: nowrap;
-}
-.pageheader .pageheader-inner .pageheader-col .pageheader-login ul {
-  display: flex;
-  justify-content: space-between;
-}
-.pageheader .pageheader-inner .pageheader-col .pageheader-login ul li {
-  list-style: none;
-}
-.pageheader .pageheader-inner .pageheader-col .pageheader-login ul li a {
-  color: inherit;
-  text-decoration: none;
-  cursor: pointer;
-  list-style: none;
+body {
+  background-color: #f1f8e9;
+  padding-top: 50px;
 }
 
-.top-wrapper {
-  background: url("/assets/images/meeting-2954348_1280.jpg");
+#app {
+  background-color: #f1f8e9;
+}
+#app .card_color {
+  background-color: #fffde7;
+}
+
+.top-images {
+  width: 100%;
+  height: 400px;
+  background: url("/assets/images/top-pictures.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  height: 625px;
-  width: auto;
+}
+
+.main-images {
+  width: 100%;
+  height: 400px;
+  background: url("/assets/images/main-pictures.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.container .practice-title {
+  margin: 30px 0;
+}
+
+.navigate-color {
+  background-color: #64DD17;
 }
