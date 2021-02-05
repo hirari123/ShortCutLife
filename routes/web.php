@@ -53,7 +53,7 @@ Route::get('/holiday', 'CalendarController@getHoliday');
 Route::post('/holiday', 'CalendarController@postHoliday');
 // Route::get('/holiday', 'CalendarController@index');
 
-// 休日の修正
+// 休日の修正git 
 Route::get('/holiday/{id}', 'CalendarController@getHolidayId');
 
 // 削除アクション
