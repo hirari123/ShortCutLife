@@ -48,3 +48,13 @@ Route::prefix('users')->name('users.')->group(function () {
 // ゲストユーザーログイン
 Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
 
+// カレンダー
+Route::get('/holiday', 'CalendarController@getHoliday');
+Route::post('/holiday', 'CalendarController@postHoliday');
+// Route::get('/holiday', 'CalendarController@index');
+
+// 休日の修正git 
+Route::get('/holiday/{id}', 'CalendarController@getHolidayId');
+
+// 削除アクション
+Route::delete('/holiday', 'CalendarController@deleteHoliday');
