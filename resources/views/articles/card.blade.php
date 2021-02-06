@@ -63,13 +63,13 @@
     <!-- modal -->
   @endif
 
-  <div class="card-body pt-3">
+  <div class="card-body pt-1">
     <h3 class="h4 card-title">
       <a class="text-dark" href="{{ route('articles.show', ['article' => $article]) }}">
         {{ $article->title }}
       </a>
     </h3>
-    <div class="card-text">
+    <div class="card-text pt-1">
       {{ $article->body }}
     </div>
   </div>
