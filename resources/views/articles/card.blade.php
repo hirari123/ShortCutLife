@@ -63,7 +63,7 @@
     <!-- modal -->
   @endif
 
-  <div class="card-body pt-1">
+  <div class="card-body pt-3">
     <h3 class="h4 card-title">
       <a class="text-dark" href="{{ route('articles.show', ['article' => $article]) }}">
         {{ $article->title }}
@@ -74,25 +74,13 @@
     </div>
   </div>
 
-  <div class="card-body pt-0 pb-2 pl-3">
-    <div class="card-text">
-      <article-like
-        :initial-is-liked-by='@json($article->isLikedBy(Auth::user()))'
-        :initial-count-likes='@json($article->count_likes)'
-        :authorized='@json(Auth::check())'
-        endpoint="{{ route('articles.like', ['article' => $article]) }}"
-      >
-      </article-like>
-    </div>
-  </div>
-
   <!-- タグを表示 -->
   @foreach ($article->tags as $tag)
     @if ($loop->first)
       <div class="card-body pt-0 pb-4 pl-3">
         <div class="cart-text line-height">
     @endif
-          <a href="{{ route('tags.show', ['name' => $tag->name]) }}" class="border border-danger p-1 mr-1 mt-1 text-danger">
+          <a href="{{ route('tags.show', ['name' => $tag->name]) }}" class="border border-success p-1 mr-1 mt-1 text-success">
             {{ $tag->hashtag }}
           </a>
     @if ($loop->last)
@@ -100,4 +88,28 @@
       </div>
     @endif
   @endforeach
+
+  <div class="card-footer py-1 d-flex justify-content-end bg-white">
+
+    <!-- コメントアイコン -->
+    <div class="d-flex align-items-center mr-3">
+      <a class="in-link p-1" href="{{ route('articles.show', ['article' => $article]) }}"><i class="far fa-comment fa-fw fa-lg"></i></a>
+    </div>
+
+    <!-- いいねアイコン -->
+    <div class="d-flex align-items-center">
+      <div class="card-text">
+        <article-like
+          :initial-is-liked-by='@json($article->isLikedBy(Auth::user()))'
+          :initial-count-likes='@json($article->count_likes)'
+          :authorized='@json(Auth::check())'
+          endpoint="{{ route('articles.like', ['article' => $article]) }}"
+        >
+        </article-like>
+      </div>
+    </div>
+
+  </div>
+
+
 </div>
