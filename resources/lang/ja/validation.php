@@ -149,5 +149,7 @@ return [
       'name' => 'ユーザー名',
       'email' => 'メールアドレス',
       'password' => 'パスワード',
+      'day' => '日付',
+      'description' => '説明',
   ],
 ];
