@@ -5,86 +5,67 @@
 @section('content')
   @include('nav')
   <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-8 mt-5">
-        <div class="card mt-5 mb-5">
-          <div class="card-header bg-dark text-light h5">ユーザー登録</div>
+    <div class="row">
+      <div class="col-md-7 mx-auto">
+        <div class="card mt-5">
+          <h2 class="h4 card-header text-center purple-gradient text-white">ユーザー登録</h2>
 
           <div class="card-body">
-            <form method="POST" action="{{ route('register') }}">
-              @csrf
 
-              <!-- ユーザー名の項目 -->
-              <div class="form-group row">
-                <label for="name" class="col-md-4 col-form-label text-md-right">ユーザー名</label>
+            @include('error_card_list')
 
-                <div class="col-md-6">
-                  <input type="text" id="name" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+            <div class="user-form my-4">
+              <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+                @csrf
 
-                  @error('name')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
+                <!-- ユーザー名の項目 -->
+                <div class="form-group">
+                  <label for="name">
+                    ユーザー名
+                    <small class="text-danger">(必須)</small>
+                  </label>
+                  <input class="form-control" type="text" id="name" name="name" value="{{ old('name') }}" placeholder="※15文字以内">
                 </div>
+
+                <!-- メールアドレスの項目 -->
+                <div class="form-group">
+                  <label for="email">
+                    メールアドレス
+                    <small class="text-danger">(必須)</small>
+                  </label>
+                  <input class="form-control" type="text" id=email name="email" value="{{ old('email') }}" placeholder="※(例)chotplay@chotplay.com" >
+                </div>
+
+                <!-- パスワードの項目 -->
+                <div class="form-group">
+                  <label for="password">
+                    パスワード
+                    <small class="text-danger">(必須)</small>
+                  </label>
+                  <input class="form-control" type="password" id="password" name="password" placeholder="※英数字8文字以上">
+                </div>
+
+                <!-- パスワード確認の項目 -->
+                <div class="form-group">
+                  <label for="password-confirm">
+                    パスワード(確認用)
+                    <small class="text-danger">(必須)</small>
+                  </label>
+                  <input class="form-control" type="password" id="password-confirmation" name="password-confirmation" placeholder="※パスワードを再入力">
+                </div>
+
+                <!-- 登録ボタン -->
+                <button type="submit" class="btn btn-block purple-gradient">
+                  <span class="h6">ユーザー登録</span>
+                </button>
+              </form>
+
+              <!-- ログインはこちら -->
+              <div class="mt-3">
+                <a href="{{ route('login') }}" class="text-primary">ログインはこちら</a>
               </div>
 
-              <!-- メールアドレスの項目 -->
-              <div class="form-group row">
-                <label for="email" class="col-md-4 col-form-label text-md-right">メールアドレス</label>
-
-                <div class="col-md-6">
-                  <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                  @error('email')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-                </div>
-              </div>
-
-              <!-- パスワードの項目 -->
-              <div class="form-group row">
-                <label for="password" class="col-md-4 col-form-label text-md-right">パスワード</label>
-
-                <div class="col-md-6">
-                  <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                  @error('password')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-                </div>
-              </div>
-
-              <!-- パスワード確認の項目 -->
-              <div class="form-group row">
-                <label for="password-confirm" class="col-md-4 col-form-label text-md-right">パスワード(確認用)</label>
-
-                <div class="col-md-6">
-                  <input type="password" id="password-confirm" class="form-control" name="password_confirmation" require autocomplete="new-password">
-                </div>
-              </div>
-
-              <!-- 登録ボタン -->
-              <div class="form-group row mb-0">
-                <div class="col-md-6 offset-md-4">
-                  <button type="submit" class="btn btn-primary btn-rounded">
-                    ユーザー登録
-                  </button>
-                </div>
-              </div>
-
-              <!-- ログインはこちら
-              <div class="mt-0">
-                <a href="{{ route('login') }}" class="card-text">
-                  ログインはこちら
-                </a>
-              </div> -->
-
-            </form>
+            </div>
           </div>
         </div>
       </div>
