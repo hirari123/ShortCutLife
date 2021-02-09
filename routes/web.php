@@ -53,8 +53,11 @@ Route::get('/holiday', 'CalendarController@getHoliday');
 Route::post('/holiday', 'CalendarController@postHoliday');
 // Route::get('/holiday', 'CalendarController@index');
 
-// 休日の修正git 
+// 休日の修正
 Route::get('/holiday/{id}', 'CalendarController@getHolidayId');
 
 // 削除アクション
 Route::delete('/holiday', 'CalendarController@deleteHoliday');
+
+// コメント機能
+Route::resource('/comments', 'CommentController')->only(['store'])->middleware('throttle:15, 1');
