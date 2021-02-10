@@ -6,66 +6,49 @@
 
 @section('content')
   @include('nav')
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-md-6 mt-5">
-        <div class="login-box card mt-5 mb-5">
-          <div class="login-header card-header bg-dark text-light">
-            登録済みの方はこちらからログイン
-          </div>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-7 mx-auto">
+        <div class="card mt-5">
+          <h2 class="h4 card-header purple-gradient text-center text-white">
+            ログイン
+          </h2>
 
-          <div class="login-body card-body">
-            <form method="post" action="{{ route('login') }}">
-              @csrf
+          <div class="card-body">
 
-              <div class="form-group row">
-                <label for="email" class="col-sm-4 col-form-label text-md-right">メールアドレス</label>
-
-                <div class="col-md-6">
-                  <input type="text" id="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" require autocomplete="email" autofocus>
-
-                  @error('email')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
+            @include('error_card_list')
+            
+            <div class="user-form my-4">
+              <form method="post" action="{{ route('login') }}">
+                @csrf
+  
+                <div class="form-group">
+                  <label for="email">メールアドレス</label>
+                  <input class="form-control" type="text" id="email" name="email" value="{{ old('email') }}">
                 </div>
-              </div>
 
-              <div class="form-group row">
-                <label for="password" class="col-sm-4 col-form-label text-md-right">パスワード</label>
-
-                <div class="col-md-6">
-                  <input type="password" id="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                  @error('password')
-                  <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
+                <div class="form-group">
+                  <label for="password">パスワード</label>
+                  <input class="form-control" type="password" id="password" name="password" >
                 </div>
-              </div>
 
-              <div class="form-group row ml-3">
-                <div class="col-md-8 offset-md-4">
-                  <div class="check-box">
-                    <input type="checkbox" class="form-check-input" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-                    
-                    <label for="remember" class="form-check-label">
-                      ログインしたままにする
-                    </label>
-                  </div>
-                </div>
-              </div>
+                <!-- 次回から自動でログイン -->
+                <input type="hidden" name="remember" id="remember" value="on">
 
-              <div class="form-group row mb-0">
-                <div class="col-md-8 offset-md-4">
-                  <button type="submit" class="btn btn-primary btn-rounded active">
+                <div class="d-flex justify-content-between">
+                  <button type="submit" class="btn purple-gradient pr-4 pl-4" text-while>
                     ログイン
                   </button>
+                  <a href="{{ route('login.guest') }}" class="btn btn-success p-3">
+                    ゲストログイン
+                  </a>
                 </div>
+              </form>
+
+              <div class="mt-3">
+                <a href="{{ route('register') }}" class="text-primary">ユーザー登録はこちら</a>
               </div>
-            </form>
+            </div>
 
           </div>
         </div>
