@@ -1,21 +1,22 @@
 <!-- ナビゲーションバー -->
-  <nav class="navbar navbar-expand navbar-dark fixed-top blue-gradient">
-    <a class="navbar-brand mr-auto" href="/"><i class="fas fa-bullhorn mr-1"></i>CHOT PLAY</a>
-    <ul class="navbar-nav ml-auto">
+  <nav class="navbar navbar-expand navbar-dark px-4 fixed-top blue-gradient">
+    <a class="navbar-brand mr-auto" href="/" style="font-size: 1.5rem;"><i class="fas fa-bullhorn mr-1"></i>CHOT PLAY</a>
 
-      <!-- @guest
-      <li class="nav-item mr-5">
-        <div class="input-group">
-          <div class="form-outline">
-            <input type="search" id="form1" class="form-control">
-            <label class="form-label" for="form1">Search</label>
-          </div>
-          <button type="button" class="btn btn-primary">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </li>
-      @endguest -->
+    @if (isset($articles))
+      <form method="GET" action="{{ route('articles.index') }}" class="search-form form-inline w-25 d-none d-md-flex">
+        <span></span>
+        <input class="form-control w-100" type="search" name="search" placeholder="投稿を検索" value="{{ $search ?? old('search') }}">
+      </form>
+    @elseif (isset($meetings))
+      <form method="GET" action="{{ route('meetings.index') }}" class="search-form form-inline w-25 d-none d-md-flex">
+        <span></span>
+        <input class="form-control w-100" type="search" name="search" placeholder="練習を検索" value="{{ $search ?? old('search') }}">
+      </form>
+    @else
+      <!-- 検索フォームを表示しない -->
+    @endif
+
+    <ul class="navbar-nav ml-auto">
 
       @guest
       <li class="nav-item">
