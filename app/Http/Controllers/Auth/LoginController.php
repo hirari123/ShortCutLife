@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -40,6 +41,23 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+     * ログイン後の処理
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     * @override \Illuminate\Http\Foundation\Auth\AuthenticatesUsers
+     */
+
+    // ログイン後にフラッシュメッセージ
+    protected function authenticated(Request $request)
+    {
+        // フラッシュメッセージを表示
+        session()->flash('msg_success', 'ログインしました!!');
+        return redirect('/');
+    }
+
+
     // ゲストユーザー用のユーザーIDを定数として定義
     private const GUEST_USER_ID = 1;
 
@@ -48,9 +66,23 @@ class LoginController extends Controller
     {
         // id = 1のゲストユーザー情報がDBに存在すれば、ゲストログインする
         if (Auth::loginUsingId(self::GUEST_USER_ID)) {
+            session()->flash('msg_success', 'ゲストユーザーでログインしました!!');
             return redirect('/');
         }
 
+        session()->flash('msg_error', 'ゲストログインに失敗しました!!');
+        return redirect('/');
+    }
+
+    // ログアウト後にフラッシュメッセージ
+    protected function loggedOut(Request $request)
+    {
+        $this->guard()->logout();
+        $request->session()->regenerateToken();
+        $request->session()->invalidate();
+
+        // フラッシュメッセージを表示
+        session()->flash('msg_success', 'ログアウトしました!!');
         return redirect('/');
     }
 
