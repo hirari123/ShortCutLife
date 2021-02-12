@@ -1,6 +1,9 @@
 <!-- ナビゲーションバー -->
-  <nav class="navbar navbar-expand navbar-dark px-4 fixed-top blue-gradient">
-    <a class="navbar-brand mr-auto" href="/" style="font-size: 1.5rem;"><i class="fas fa-bullhorn mr-1"></i>CHOT PLAY</a>
+  <nav class="navbar navbar-expand navbar-dark px-4 fixed-top purple-gradient">
+    <a class="navbar-brand mr-auto" href="/" style="font-size: 1.5rem;">
+    <img src="/assets/images/titleIcon.png" alt="タイトルアイコンマイク">
+    CHOT PLAY
+    </a>
 
     @if (isset($articles))
       <form method="GET" action="{{ route('articles.index') }}" class="search-form form-inline w-25 d-none d-md-flex">
@@ -38,7 +41,7 @@
 
       @auth
       <li class="nav-item">
-        <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i>投稿する</a>
+        <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i>練習日を決める</a>
       </li>
       @endauth
 
