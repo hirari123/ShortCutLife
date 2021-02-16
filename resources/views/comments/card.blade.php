@@ -13,7 +13,7 @@
       </div>
       <div class="d-flex justify-content-end flex-grow-1">
         <p class="mb-0 font-weight-lighter">
-          {{ $comment->created_at->format('Y-m-d H:i')}}
+          {{ $comment->created_at->format('Y-m-d H:i') }}
         </p>
       </div>
     </div>
@@ -25,4 +25,4 @@
   <li class="list-group-item text-center">
     <p class="mb-0 text-muted">コメントはまだありません</p>
   </li>
-@endforeach
+@endforelse
