@@ -43,4 +43,10 @@ class Article extends Model
     {
         return $this->belongsToMany('App\Tag')->withTimestamps();
     }
+
+    // コメントモデルへのリレーションを追加
+    public function comments()
+    {
+        return $this->hasMany('App\Comment');
+    }
 }
