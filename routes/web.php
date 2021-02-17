@@ -61,3 +61,7 @@ Route::delete('/holiday', 'CalendarController@deleteHoliday');
 
 // コメント機能
 Route::resource('/comments', 'CommentController')->only(['store'])->middleware('throttle:15, 1');
+
+// Zoomミーティング
+Route::resource('/meetings', 'Zoom\MeetingController')->only('store')->middleware('throttle:5, 1');
+Route::resource('/meetings', 'Zoom\MeetingController')->except('store');
