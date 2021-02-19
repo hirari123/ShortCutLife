@@ -4,14 +4,35 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use App\Http\Requests\UpdatePasswordRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function show(string $name)
+    private $user;
+
+    public function __construct(User $user)
+    {
+        $this->user = $user;
+    }
+
+    public function show(string $name, Request $request)
     {
         $user = User::where('name', $name)->first();
 
-        $articles = $user->articles->sortByDesc('created_at');
+        // ユーザー詳細ページのユーザーによる投稿一覧10件ずつ取得
+        $articles = $user->articles()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        // 無限スクロールのajax処理
+        if ($request->ajax()) {
+            return response()->json([
+                'html' => view('articles.list', ['articles' => $articles])->render(),
+                'next' => $articles->nextPageUrl()
+            ]);
+        }
 
         return view('users.show', [
             'user' => $user,
@@ -20,11 +41,22 @@ class UserController extends Controller
     }
 
     // 「いいねした記事一覧を表示した状態のユーザーページ」表示のアクションメソッドを追加
-    public function likes(string $name)
+    public function likes(string $name, Request $request)
     {
         $user = User::where('name', $name)->first();
 
-        $articles = $user->likes->sortByDesc('created_at');
+        // いいねした投稿一覧を10件ずつ取得
+        $articles = $user->likes()
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
+        // 無限スクロールのajax処理
+        if ($request->ajax()) {
+            return response()->json([
+                'html' => view('articles.list', ['articles' => $articles])->render(),
+                'next' => $articles->nextPageUrl()
+            ]);
+        }
 
         return view('users.likes', [
             'user' => $user,
@@ -37,7 +69,9 @@ class UserController extends Controller
     {
         $user = User::where('name', $name)->first();
 
-        $followings = $user->followings->sortByDesc('created_at');
+        $followings = $user->followings()
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
 
         return view('users.followings', [
             'user' => $user,
@@ -50,7 +84,9 @@ class UserController extends Controller
     {
         $user = User::where('name', $name)->first();
 
-        $followers = $user->followers->sortByDesc('created_at');
+        $followers = $user->followers()
+            ->orderBy('created_at', 'desc')
+            ->paginate(5);
 
         return view('users.followers', [
             'user' => $user,
