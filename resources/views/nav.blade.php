@@ -1,5 +1,5 @@
 <!-- ナビゲーションバー -->
-  <nav class="navbar navbar-expand navbar-dark px-4 fixed-top purple-gradient">
+  <nav class="navbar navbar-expand navbar-dark px-5 fixed-top purple-gradient">
     <a class="navbar-brand mr-auto" href="/" style="font-size: 1.5rem;">
     <img src="/assets/images/titleIcon.png" alt="タイトルアイコンマイク">
     CHOT PLAY
