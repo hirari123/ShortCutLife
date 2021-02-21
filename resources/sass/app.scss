@@ -96,3 +96,20 @@ a {
   margin: auto;
   width: 60%;
 }
+
+// 検索フォーム
+.search-form {
+  position: relative;
+
+  span::before {
+    content: "🔍";
+    position: absolute;
+    top: 8px;
+    left: 9px;
+  }
+
+  input[name="search"] {
+    padding-left: 36px;
+  }
+}
+
