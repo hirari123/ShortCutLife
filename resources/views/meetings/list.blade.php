@@ -1,5 +1,5 @@
 @if ($meetings->isEmpty())
-  @include('not_exist', ['message' => ミーティングがありません。])
+  @include('not_exist', ['message' => 'ミーティングがありません。'])
 @endif
 
 @foreach ($meetings as $meeting)
