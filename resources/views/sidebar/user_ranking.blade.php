@@ -1,4 +1,4 @@
-<!-- 練習数ランキング -->
+<!-- 練習数ランキング
 
 <div class="card m-4 sidebar-content">
   <div class="card-header d-flex align-items-center row m-0 text-center">
@@ -24,4 +24,4 @@
     </div>
     @endforeach
   </div>
-</div>
+</div> -->
