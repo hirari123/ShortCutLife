@@ -11,6 +11,7 @@
         "php": "^7.2",
         "barryvdh/laravel-debugbar": "^3.5",
         "fideloper/proxy": "^4.0",
+        "firebase/php-jwt": "^5.2",
         "google/apiclient": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^6.2",
