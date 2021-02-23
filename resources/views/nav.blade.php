@@ -41,6 +41,12 @@
 
       @auth
       <li class="nav-item">
+        <a class="nav-link" href="{{ route('meetings.index') }}"><i class="fas fa-video mr-1"></i>Zoom練習会</a>
+      </li>
+      @endauth
+
+      @auth
+      <li class="nav-item">
         <a class="nav-link" href="{{ route('articles.create') }}"><i class="fas fa-pen mr-1"></i>練習日を決める</a>
       </li>
       @endauth
