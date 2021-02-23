@@ -1,4 +1,4 @@
-@if ($articles->isEmpty)
+@if ($articles->isEmpty())
   @include('not_exist', ['message' => '投稿がありません。'])
 @endif
 
