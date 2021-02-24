@@ -10004,12 +10004,148 @@ h3 {
     border-color: #dee2e6;
   }
 }
+.search-form {
+  position: relative;
+}
+.search-form span::before {
+  content: "\1F50D";
+  position: absolute;
+  top: 8px;
+  left: 9px;
+}
+.search-form input[name=search] {
+  padding-left: 36px;
+}
+
+.new-article-btn {
+  width: 140px;
+  height: 140px;
+  position: fixed;
+  bottom: 35px;
+  right: 60px;
+  z-index: 999;
+  background: linear-gradient(to bottom, #f507a5, #b104f5);
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.new-article-btn p {
+  margin: 0 0 3px;
+  font-size: 15px;
+}
+.new-article-btn i.fa-plus {
+  font-size: 48px;
+}
+.new-article-btn:hover {
+  transition: all 0.6s ease;
+  opacity: 0.8;
+  cursor: pointer;
+  color: #fff;
+}
+
+.article-card {
+  position: relative;
+}
+
+.full-range-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-indent: -999px;
+  z-index: 2;
+}
+
+.in-link {
+  position: relative;
+  z-index: 3;
+}
+.in-link:hover {
+  transition: all 0.6s ease;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.user-name-link {
+  position: relative;
+  z-index: 3;
+  border-bottom: 1px solid #fff;
+}
+.user-name-link:hover {
+  transition: all 0.6s ease;
+  opacity: 0.8;
+  cursor: pointer;
+  border-bottom: 1px solid #333;
+}
+
+.search-form {
+  position: relative;
+}
+.search-form span::before {
+  content: "\1F50D";
+  position: absolute;
+  top: 8px;
+  left: 9px;
+}
+.search-form input[name=search] {
+  padding-left: 36px;
+}
+
+.search-form {
+  position: relative;
+}
+.search-form span::before {
+  content: "\1F50D";
+  position: absolute;
+  top: 8px;
+  left: 9px;
+}
+.search-form input[name=search] {
+  padding-left: 36px;
+}
+
+.new-meeting-btn {
+  width: 140px;
+  height: 140px;
+  position: fixed;
+  bottom: 35px;
+  right: 225px;
+  z-index: 999;
+  background: linear-gradient(to bottom, #86b9fc, #7264f5);
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.new-meeting-btn p {
+  margin: 0 0 3px;
+  font-size: 15px;
+}
+.new-meeting-btn i.fa-plus {
+  font-size: 48px;
+}
+.new-meeting-btn:hover {
+  transition: all 0.6s ease;
+  opacity: 0.8;
+  cursor: pointer;
+  color: #fff;
+}
+
+.sidebar-content .main-tag-list a:last-child p {
+  margin-bottom: 0;
+}
+
 body {
   background-color: #f1f8e9;
   padding-top: 50px;
 }
-
-a {
+body a {
   text-decoration: none;
 }
 
@@ -10021,17 +10157,37 @@ a {
 }
 
 .top-images {
-  width: 100%;
-  height: 800px;
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.top-bg-img {
   background: url("/assets/images/top-pictures.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  height: 400px;
+}
+
+.top-inner {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  margin: auto;
+}
+
+.top-text {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+  color: #038743;
+  font-size: 30px;
+  letter-spacing: 0.4rem;
+  z-index: 9000;
 }
 
 .main-images {
   width: 100%;
-  height: 800px;
+  height: 400px;
   background: url("/assets/images/main-pictures.jpg");
   background-size: cover;
   background-repeat: no-repeat;
@@ -10046,54 +10202,7 @@ a {
   background-color: #64DD17;
 }
 
-.new-post {
-  width: 140px;
-  height: 140px;
-  position: fixed;
-  right: 0;
-  z-index: 999;
-  background: linear-gradient(to bottom, #f5d364, #fca186);
-  color: #fff;
-  border-radius: 50%;
-  text-align: center;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.new-post p {
-  margin: 0 0 3px;
-  font-size: 15px;
-  color: #fff;
-  text-decoration: none;
-}
-.new-post i.fa-plus {
-  color: #fff;
-  font-size: 48px;
-  text-decoration: none;
-}
-.new-post:hover {
-  transition: all 0.6s ease;
-  opacity: 0.8;
-  cursor: pointer;
-  color: #fff;
-  text-decoration: none;
-}
-
 .user-form {
   margin: auto;
   width: 60%;
-}
-
-.search-form {
-  position: relative;
-}
-.search-form span::before {
-  content: "\1F50D";
-  position: absolute;
-  top: 8px;
-  left: 9px;
-}
-.search-form input[name=search] {
-  padding-left: 36px;
 }
