@@ -40,6 +40,50 @@ class UserController extends Controller
         ]);
     }
 
+    public function edit(string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        // UserPolicyのupdateメソッドでアクセス制限
+        $this->authorize('update', $user);
+
+        return view('users.edit', ['user' => $user]);
+    }
+
+    public function update(UserRequest $request, string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        // UserPolicyのupdateメソッドでアクセス制限
+        $this->authorize('update', $user);
+
+        session()->flash('msg_success', 'プロフィールを編集しました');
+        return redirect()->route('users.show', ['name' => $user->name]);
+    }
+
+    public function editPassword(string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        // UserPolicyのupdateメソッドでアクセス制限
+        $this->authorize('update', $user);
+
+        return view('users.edit_password', ['user' => $user]);
+    }
+
+    public function updatePassword(UpdatePasswordRequest $request, string $name)
+    {
+        $user = User::where('name', $name)->first();
+
+        // UserPolicyのupdateメソッドでアクセス制限
+        $this->authorize('update', $user);
+
+        $user->password = Hash::make($request->input('new_password'));
+        $user->save();
+
+        session()->flash('msg_success', 'パスワードを更新しました');
+    }
+
     // 「いいねした記事一覧を表示した状態のユーザーページ」表示のアクションメソッドを追加
     public function likes(string $name, Request $request)
     {
