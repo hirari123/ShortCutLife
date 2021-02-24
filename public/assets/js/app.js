@@ -33638,8 +33638,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ArticleLike__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/ArticleLike */ "./resources/js/components/ArticleLike.vue");
 /* harmony import */ var _components_ArticleTagsInput__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/ArticleTagsInput */ "./resources/js/components/ArticleTagsInput.vue");
 /* harmony import */ var _components_FollowButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/FollowButton */ "./resources/js/components/FollowButton.vue");
- // import 'InfiniteScroll'
-// import 'toast'
 
 
 
