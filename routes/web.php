@@ -11,57 +11,67 @@
 |
 */
 
-// ユーザー新規登録、ログイン、ログアウト
+# ユーザー新規登録、ログイン、ログアウト
 Auth::routes();
 
-// "/"のルーティング
-Route::get('/', 'ArticleController@index')->name('articles.index');
-
-// 記事投稿画面のルーティング
-Route::resource('/articles', 'ArticleController')->except(['index', 'show'])->middleware('auth');
-Route::resource('/articles', 'ArticleController')->only(['show']);
-
-// 「いいね」機能のルーティングを追加
-Route::prefix('articles')->name('articles.')->group(function () {
-  Route::put('/{article}/like', 'ArticleController@like')->name('like')->middleware('auth');
-  Route::delete('/{article}/like', 'ArticleController@unlike')->name('unlike')->middleware('auth');
-});
-
-// タグ別記事一覧画面のルーティング
-Route::get('/tags/{name}', 'TagController@show')->name('tags.show');
-
-// ユーザーページのルーティング
-Route::prefix('users')->name('users.')->group(function () {
-  Route::get('/{name}', 'UserController@show')->name('show');
-  // 「いいね」のタブが押されたときのユーザーページの表示
-  Route::get('/{name}/likes', 'UserController@likes')->name('likes');
-  // フォロー中・フォロワーの一覧を表示する
-  Route::get('/{name}/followings', 'UserController@followings')->name('followings');
-  Route::get('/{name}/followers', 'UserController@followers')->name('followers');
-  // フォロー機能のルーティング  ログインユーザーのみ
-  Route::middleware('auth')->group(function () {
-    Route::put('/{name}/follow', 'UserController@follow')->name('follow');
-    Route::delete('/{name}/follow', 'UserController@unfollow')->name('unfollow');
-  });
-});
-
-// ゲストユーザーログイン
+# ゲストユーザーログイン
 Route::get('guest', 'Auth\LoginController@guestLogin')->name('login.guest');
 
-// カレンダー
-Route::get('/holiday', 'CalendarController@getHoliday');
-Route::post('/holiday', 'CalendarController@postHoliday');
-// Route::get('/holiday', 'CalendarController@index');
+# ユーザー投稿関係(index, show)
+Route::get('/', 'ArticleController@index')->name('articles.index');
+Route::get('articles/{article}', 'ArticleController@show')->name('articles.show')->where('article', '[0-9]+'); // 正規表現追加 (※createメソッド実行時に404エラーが発生するため)
 
-// 休日の修正
-Route::get('/holiday/{id}', 'CalendarController@getHolidayId');
 
-// 削除アクション
-Route::delete('/holiday', 'CalendarController@deleteHoliday');
+# 投稿のタグ機能
+Route::get('/tags/{name}', 'TagController@show')->name('tags.show');
 
-// コメント機能
-Route::resource('/comments', 'CommentController')->only(['store'])->middleware('throttle:15, 1');
+# ユーザー関連機
+Route::prefix('users')->name('users.')->group(function () {
+  // ユーザー詳細表示
+  Route::get('/{name}', 'UserController@show')->name('show');
+  // いいねした投稿一覧を表示
+  Route::get('/{name}/likes', 'UserController@likes')->name('likes');
+  // フォロー中のユーザー一覧を表示
+  Route::get('/{name}/followings', 'UserController@followings')->name('followings');
+  // フォロワー一覧を表示
+  Route::get('/{name}/followers', 'UserController@followers')->name('followers');
+});
 
-// Zoomミーティング
-Route::resource('/meetings', 'Zoom\MeetingController')->only('store')->middleware('throttle:5, 1');
-Route::resource('/meetings', 'Zoom\MeetingController')->except('store');
+// ログイン中で使用可能
+Route::group(['middleware' => 'auth'], function() {
+
+  // ユーザー投稿関係(create, store, edit, update, destroy)
+  Route::resource('/articles', 'ArticleController')->only(['store'])->middleware('throttle:15, 1');
+  Route::resource('/articles', 'ArticleController')->only(['create', 'edit', 'update','destroy']);
+
+  // いいね機能
+  Route::prefix('articles')->name('articles.')->group(function () {
+    Route::put('/{article}/like', 'ArticleController@like')->name('like');
+    Route::delete('/{article}/like', 'ArticleController@unlike')->name('unlike');
+  });
+
+  # ユーザー関係
+  Route::prefix('users/{name}')->name('users.')->group(function () {
+    // フォロー機能
+    Route::put('/follow', 'UserController@follow')->name('follow');
+    Route::delete('/follow', 'UserController@unfollow')->name('unfollow');
+
+    // ユーザープロフィール編集画面の表示
+    Route::get('/edit', 'UserController@edit')->name('edit');
+    // ユーザープロフィール更新
+    Route::patch('/update', 'UserController@update')->name('update');
+    // パスワード変更画面の表示
+    Route::get('/edit_password', 'UserController@editPassword')->name('edit_password');
+    // パスワード変更
+    Route::patch('/update_password', 'UserController@updatePassword')->name('update_password');
+    // Route::delete('/', 'UserController@destroy')->name('destroy');
+  });
+
+  // コメント機能
+  Route::resource('/comments', 'CommentController')->only(['store'])->middleware('throttle:15, 1');
+
+  // Zoomミーティング関連機能
+  Route::resource('/meetings', 'Zoom\MeetingController')->only('store')->middleware('throttle:5, 1');
+  Route::resource('/meetings', 'Zoom\MeetingController')->except('store');
+
+});
