@@ -1,0 +1,39 @@
+@import "component.scss";
+
+.new-article-btn {
+  @include new-post-btn (60px);
+}
+
+.article-card {
+  position: relative;
+}
+
+.full-range-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  text-indent: -999px;
+  z-index: 2;
+}
+
+.in-link {
+  position: relative;
+  z-index: 3;
+
+  &:hover {
+    @include link-hover;
+  }
+}
+
+.user-name-link {
+  position: relative;
+  z-index: 3;
+  border-bottom: 1px solid #fff;
+
+  &:hover {
+    @include link-hover;
+    border-bottom: 1px solid #333;
+  }
+}
