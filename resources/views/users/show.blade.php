@@ -6,13 +6,17 @@
 
 @section('content')
   @include('nav')
-  <div class="container">
-    @include('users.user')
+  <div class="container mt-4">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        @include('users.user')
 
-    @include('users.tabs', ['hasArticles' => true, 'hasLikes' => false])
+        @include('users.tabs', ['hasArticles' => true, 'hasLikes' => false])
 
-    @foreach($articles as $article)
-      @include('articles.card')
-    @endforeach
+        @include('articles.list', compact('articles'))
+
+        @include('articles.sppiner')
+      </div>
+    </div>
   </div>
 @endsection
