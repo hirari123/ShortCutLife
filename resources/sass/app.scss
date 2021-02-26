@@ -12,11 +12,12 @@
 @import "meeting.scss";
 @import "sidebar.scss";
 
-$L-size: 400px;
+$L-size: 1000px;
 
 body {
   background-color: #f1f8e9;
   padding-top: 50px;
+  z-index: -9999;
 
   a {
     text-decoration: none;
@@ -62,12 +63,32 @@ body {
 }
 
 .main-images {
-  width: 100%;
-  height: $L-size;
+  position: relative;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.main-bg-img {
   background: url('/assets/images/main-pictures.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  height: $L-size;
+}
+
+.main-inner {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  margin: auto;
+}
+
+.main-text {
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.4);
+  color: #038743;
+  font-size: 30px;
+  letter-spacing: 0.4rem;
+  z-index: 9000;
 }
 
 .container {
