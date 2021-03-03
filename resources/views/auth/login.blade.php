@@ -39,7 +39,7 @@
                   <button type="submit" class="btn purple-gradient pr-4 pl-4" text-while>
                     ログイン
                   </button>
-                  <a href="{{ route('login.guest') }}" class="btn btn-success p-3">
+                  <a href="{{ route('login.guest') }}" class="btn btn-default waves-effect waves-light p-3 text-white">
                     ゲストログイン
                   </a>
                 </div>
