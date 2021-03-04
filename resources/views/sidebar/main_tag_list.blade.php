@@ -5,7 +5,7 @@
     <i class="fas fa-tags mr-2"></i>
     メインタグ
   </div>
-  <div class="card-body main-tag-list py-3 mx-auto">
+  <div class="card-body main-tag-list py-2 mx-auto">
   <a href="{{
       \App\Tag::where('name', 'プレゼン練習')->first()
       ? route('tags.show', ['name' => 'プレゼン練習'])
