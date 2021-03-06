@@ -16,7 +16,16 @@
         <img src="/assets/images/titleIcon.png" alt="タイトルアイコン">
         <h1 class="ml-2">CHOT PLAY</h1>
       </div>
-      <p class="h5">発表練習専用アプリ</p>
+      <p class="h5 my-2 pb-3">発表練習専用アプリ</p>
+      <div class="d-flex justify-content-between">
+        <a href="{{ route('login') }}" class="btn purple-gradient waves-effect waves-light p-2 text-white" style="letter-spacing: 0.2em;">
+          <i class="fas fa-sign-in-alt mr-1"></i>ログイン
+        </a>
+
+        <a href="{{ route('login.guest') }}" class="btn btn-default waves-effect waves-light p-2 text-white" style="letter-spacing: 0.2em;">
+          <i class="fas fa-user-check mr-1"></i>ゲストログイン
+        </a>
+      </div>
     </div>
   </div>
   @endguest
