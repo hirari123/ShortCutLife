@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->bigIncrements('id')->unsigned();
             $table->string('name')->unique()->comment('ユーザー名');
             $table->text('self_introduction')->nullable()->comment('自己紹介文');
-            $table->string('email')->unique();
+            $table->string('email')->unique()->comment('メールアドレス');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();
             $table->longText('zoom_code')->nullable()->default(null);
