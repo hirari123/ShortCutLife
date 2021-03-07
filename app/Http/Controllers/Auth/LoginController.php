@@ -57,11 +57,15 @@ class LoginController extends Controller
         return redirect('/');
     }
 
+    // ゲストユーザー用のユーザーIDを定数として定義
+    private const GUEST_USER_ID = 1;
+
 
     // ゲストログイン処理
     public function guestLogin()
     {
-        if (Auth::loginUsingId(config('user.guest_user_id'))) {
+        // id=1のゲストユーザー情報がDBに存在すれば、ゲストログインする
+        if (Auth::loginUsingId(self::GUEST_USER_ID)) {
             session()->flash('msg_success', 'ゲストユーザーでログインしました!!');
             return redirect('/');
         }
