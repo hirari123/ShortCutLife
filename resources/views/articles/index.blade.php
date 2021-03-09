@@ -36,7 +36,7 @@
       練習予定を立てよう
       <div class="btn rounded-pill blue-gradient text-center pt-3">
         <a href="{{ route('meetings.index') }}" class="text-white">
-          <p class="h4">Zoom練習会</p>
+          <p class="h4 waves-effect waves-light">Zoom練習会</p>
         </a>
       </div>
     </div>
