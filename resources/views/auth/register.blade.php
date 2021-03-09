@@ -55,7 +55,7 @@
                 </div>
 
                 <!-- 登録ボタン -->
-                <button type="submit" class="btn btn-block purple-gradient">
+                <button type="submit" class="btn rounded-pill btn-block purple-gradient">
                   <span class="h6">ユーザー登録</span>
                 </button>
               </form>
