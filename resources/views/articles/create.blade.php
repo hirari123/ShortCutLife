@@ -27,8 +27,8 @@
 
                   <!-- 戻るボタン -->
                   <div style="width: 45%;">
-                    <button type="button" class="btn btn-outline-primary btn-block">
-                      <span class="h6">戻 る</span>
+                    <button type="button" class="btn btn-outline-primary btn-block" onclick="location.href='{{ route('articles.index') }}'">
+                      <span class="h6">戻る</span>
                     </button>
                   </div>
                 </div>
