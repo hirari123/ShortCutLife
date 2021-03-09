@@ -34,7 +34,7 @@
       @endguest
 
       @guest
-      <li class="nav-item bg-default rounded">
+      <li class="nav-item bg-default rounded-pill">
         <a class="nav-link waves-effect waves-light" href="{{ route('login.guest') }}"><i class="fas fa-user-check mr-1"></i>ゲストログイン</a>
       </li>
       @endguest
