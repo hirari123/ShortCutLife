@@ -34,11 +34,9 @@
   <div class="main-images main-bg-img">
     <div class="main-inner main-text">
       練習予定を立てよう
-      <div class="btn rounded-pill blue-gradient text-center pt-3">
-        <a href="{{ route('meetings.index') }}" class="text-white">
-          <p class="h4 waves-effect waves-light">Zoom練習会</p>
-        </a>
-      </div>
+      <button type="button" class="btn btn-block rounded-pill blue-gradient text-center mt-3 p-2" onclick="location.href='{{ route('meetings.index') }}'" style="width: 60%;">
+        <span class="h5">ZOOM練習会</span>
+      </button>
     </div>
   </div>
   @endauth
