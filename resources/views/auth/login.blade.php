@@ -36,10 +36,10 @@
                 <input type="hidden" name="remember" id="remember" value="on">
 
                 <div class="d-flex justify-content-between">
-                  <button type="submit" class="btn purple-gradient pr-4 pl-4" text-while>
+                  <button type="submit" class="btn rounded-pill purple-gradient pr-4 pl-4" text-while>
                     ログイン
                   </button>
-                  <a href="{{ route('login.guest') }}" class="btn btn-default waves-effect waves-light p-3 text-white">
+                  <a href="{{ route('login.guest') }}" class="btn rounded-pill btn-default waves-effect waves-light p-3 text-white">
                     ゲストログイン
                   </a>
                 </div>
