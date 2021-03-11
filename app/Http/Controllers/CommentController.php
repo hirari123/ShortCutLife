@@ -14,11 +14,14 @@ class CommentController extends Controller
         $request->session()->regenerateToken();
 
         $user = auth()->user();
+        $comment->fill($request->validated());
         $comment->user_id = $user->id;
         $comment->save();
 
-        session()->flash('msg_success', 'コメントを投稿しました');
+        // session()->flash('msg_success', 'コメントを投稿しました');
 
-        return back();
+        // return back();
+
+        return back()->with('msg_success', 'コメントを投稿しました');
     }
 }
