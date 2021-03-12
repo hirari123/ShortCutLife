@@ -4,6 +4,7 @@ namespace App\Client;
 
 use Illuminate\Support\Facades\Log;
 use GuzzleHttp\Client;
+use Carbon\CarbonImmutable;
 
 class ZoomJwtClient
 {
@@ -58,27 +59,19 @@ class ZoomJwtClient
     return $this->zoomRequest('DELETE', $path, $query = [], $body);
   }
 
-  public function toZoomTimeFormat(string $dateTime)
+  // Zoomミーティングへのリクエスト用のフォーマットに日付時刻を変換
+  public function toZoomTimeFormat(string $dateTime): string
   {
-    try {
-        $date = new \DateTime($dateTime);
-        return $date->format('Y-m-d\TH:i:s');
-    } catch(\Exception $e) {
-        Log::error('ZoomJWT->toZoomTimeFormat : ' . $e->getMessage());
-        return '';
-    }
+    $dateTime = new CarbonImmutable($dateTime);
+    // 秒まで指定しておく(正しくリクエストが送られないため)
+    return $dateTime->format('Y-m-d\TH:i:s');
   }
 
-  public function toUnixTimeStamp(string $dateTime, string $timezone)
+  // timezoneを元に、日付時刻を変換する
+  public function changeDateTimeForTimezone(string $dateTime, string $timezone): CarbonImmutable
   {
-    try {
-        $date = new \DateTime($dateTime, new \DateTimeZone($timezone));
-        return $date->getTimestamp();
-    } catch (\Exception $e) {
-        Log::error('ZoomJWT->toUnixTimeStamp : ' . $e->getMessage());
-        return '';
-    }
+    $dateTime = new CarbonImmutable($dateTime);
+    return $dateTime->setTimezone($timezone);
   }
-
 
 }
