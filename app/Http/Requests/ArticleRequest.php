@@ -42,6 +42,14 @@ class ArticleRequest extends FormRequest
         ];
     }
 
+    // バリデーションエラーメッセージ
+    public function messages()
+    {
+        return [
+            'tags.regex' => ':attributeに「/」と半角スペースは使用できません。'
+        ];
+    }
+
     // tagsの整形
     public function passedValidation()
     {
