@@ -94,6 +94,7 @@
     <!-- コメントアイコン -->
     <div class="d-flex align-items-center mr-3">
       <a class="in-link p-1" href="{{ route('articles.show', ['article' => $article]) }}"><i class="far fa-comment fa-fw fa-lg"></i></a>
+      <p class="mb-0">{{ count($article->comments) }}</p>
     </div>
 
     <!-- いいねアイコン -->
