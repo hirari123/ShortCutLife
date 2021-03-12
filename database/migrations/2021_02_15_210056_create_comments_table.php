@@ -17,7 +17,7 @@ class CreateCommentsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->comment('ユーザーID');
                 $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('article_id')->comment('投稿ID');
+            $table->unsignedBigInteger('article_id')->nullable()->comment('投稿ID');
                 $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
             $table->string('comment')->comment('コメント');
             $table->timestamps();
