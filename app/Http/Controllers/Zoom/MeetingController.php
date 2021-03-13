@@ -2,52 +2,94 @@
 
 namespace App\Http\Controllers\Zoom;
 
+use App\Client\ZoomJwtClient;
 use App\Meeting;
+use App\Services\SearchData;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\MeetingRequest;
-use App\Client\ZoomJwtClient;
+use Carbon\CarbonImmutable;
 
 class MeetingController extends Controller
 {
-
-    // const MEETING_TYPE_INSTANT = 1;
-    const MEETING_TYPE_SCHEDULE = 2;
-    // const MEETING_TYPE_RECURRING = 3;
-    // const MEETING_TYPE_FIXED_RECURRING_FIXED = 8;
-
     private $client;
+    private CarbonImmutable $today;
 
     public function __construct(ZoomJwtClient $client)
     {
         $this->client = $client;
-
+        $this->today = CarbonImmutable::today();
         $this->authorizeResource(Meeting::class, 'meeting');
     }
 
-    public function index(Request $request)
+    // 作成済みミーティング情報を一覧で取得
+    function getListMeetings()
     {
-        // ユーザー投稿の検索機能
+        $path = 'users/' . config('zoom.zoom_account_email') . '/meetings';
+        $response = $this->client->zoomGet($path);
+
+        return $response;
+    }
+
+    // 指定したミーティング情報の取得
+    function getMeeting(int $meetingId)
+    {
+        $path = 'meetings/' . $meetingId;
+        $response = $this->client->zoomGet($path);
+
+        return $response;
+    }
+
+    // 作成済みのミーティングの、「開始日」と「ステータス」をチェックし、過去のミーティングを削除する
+    function checkStartTimeAndStatusOfMeetings(): void
+    {
+        // 作成済みミーティングの情報を全件取得
+        $response = $this->getListMeetings();
+        $bodies = json_decode($response->getBody(), true);
+        $meetings = $bodies['meetings'];
+
+        // 作成済みミーティングの、ミーティングIDのみを取得
+
+        foreach ($meetings as $meeting) {
+            $response = $this->getMeeting($meeting['id']);
+            $body = json_decode($response->getBody(), true);
+
+            // ミーティング開始時間を取得(timezoneはAsia／Tokyo)
+            $startTime = $this->client
+                ->changeDateTimeForTimezone
+                (
+                    $body['start_time'],
+                    $body['timezone']
+                );
+            
+            // ミーティングのステータスを取得
+            $meetingStatus = $body['status'];
+
+            // 作成済みのミーティングの、「開始日」と「ステータス」をチェック
+            if ($startTime < $this->today &&
+                $meetingStatus === config('zoom.meeting_status.inactive'))
+            {
+                // ミーティングの「開始日」が「今日」より前で、かつ「ステータス」が「waiting」である
+                // 過去のミーティングを削除する
+                $meeting = new Meeting();
+                $meeting = $meeting->findByMeetingId($body['id']);
+
+                if (isset($meeting)) {
+                    $this->destroy($meeting);
+                } else {
+                    \Log::warning('DBからミーティングを取得できませんでした。');
+                }
+            }
+        }
+        \Log::info('過去のミーティングがあるかをチェックするバッチ処理が正常終了しました。');
+    }
+
+    public function index(Request $request, Meeting $meeting)
+    {
+        // ミーティングをキーワードで検索
         $search = $request->input('search');
 
-        $query = Meeting::query();
-
-        // もしもキーワードがあるなら
-        if ($search !== null) {
-
-            // 全角スペースを半角に
-            $search_split = mb_convert_kana($search, 's');
-
-            // 空白で区切る
-            $search_split2 = preg_split('/[\s]+/', $search_split, -1, PREG_SPLIT_NO_EMPTY);
-
-            // 単語をループで回す
-            foreach ($search_split2 as $value)
-            {
-                $query->where('topic', 'like', '%' . $value . '%')
-                      ->orWhere('agenda', 'like', '%' . $value . '%');
-            }
-        };
+        $query = SearchData::searchKeyword($search, $meeting);
 
         // ミーティング一覧を、無限スクロールで表示する
         $meetings = $query->with(['user'])
@@ -95,7 +137,7 @@ class MeetingController extends Controller
                             'meeting_id' => $body['id'],
                             'user_id' => $request->user()->id,
                         ]
-                )
+                    )
                 ->save();
             
             session()->flash('msg_success', 'ミーティングを作成しました');
@@ -119,6 +161,7 @@ class MeetingController extends Controller
 
             session()->flash('msg_success', 'ミーティングを削除しました');
 
+            \Log::info("ミーティングID:{$id}のミーティングを削除しました。");
             return redirect()->route('meetings.index');
         }
 
