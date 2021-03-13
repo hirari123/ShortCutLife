@@ -4,12 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Client\ZoomJwtClient;
-use Symfony\Component\CssSelector\Node\FunctionNode;
 
 class MeetingRequest extends FormRequest
 {
-    const MEETING_TYPE_SCHEDULE = 2;
-
     private $client;
 
     public function __construct(ZoomJwtClient $client)
