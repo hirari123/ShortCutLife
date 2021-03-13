@@ -2,7 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Storage;
 
 class UserRequest extends FormRequest
 {
@@ -23,10 +26,20 @@ class UserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u|max:15|' . Rule::unique('users')->ignore(Auth::id()),
-            'email' => 'required|string|email|max:255|' . Rule::unique('users')->ignore(Auth::id()),
-        ];
+        // ゲストユーザーログイン時に、ユーザー名とメールアドレスを変更できないよう対策
+        if (Auth::id() === config('user.guest_user_id')) {
+            return [
+                'profile_image' => 'file|mimes:jpeg,png,jpg,bmb|max:2048',
+                'self_introduction' => 'string|max:200|nullable',
+            ];
+        } else {
+            return [
+                'name' => 'required|regex:/^(?!.*\s).+$/u|regex:/^(?!.*\/).*$/u|max:15|' . Rule::unique('users')->ignore(Auth::id()),
+                'email' => 'required|string|email|max:255|' . Rule::unique('users')->ignore(Auth::id()),
+                'profile_image' => 'file|mimes:jpeg,png,jpg,bmb|max:2048',
+                'self_introduction' => 'string|max:200|nullable',
+            ];
+        }
     }
 
     public function attributes()
@@ -35,6 +48,8 @@ class UserRequest extends FormRequest
             'name' => 'ユーザー名',
             'email' => 'メールアドレス',
             'password' => 'パスワード',
+            'profile_image' => 'プロフィール画像',
+            'self_introduction' => '自己紹介文',
         ];
     }
 
@@ -43,5 +58,23 @@ class UserRequest extends FormRequest
         return [
             'name.regex' => ':attributeに「/」と半角スペースは使用できません。'
         ];
+    }
+
+    public function userParams()
+    {
+        $validated = parent::validated();
+
+        if (isset($validated['profile_image'])) {
+            // S3へアップロード開始
+            $image = $validated['profile_image'];
+
+            $disk = Storage::disk('s3');
+            // バケットの'image/profile'フォルダへアップロード
+            $path = $disk->putFile('images/profile', $image, 'public');
+            // アップロードした画像のフルパスを取得
+            $validated['profile_image'] = $disk->url($path);
+        }
+
+        return $validated;
     }
 }
