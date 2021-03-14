@@ -1,10 +1,12 @@
 /node_modules
 /public/css
+/public/images
 /public/hot
 /public/js
 /public/mix-manifest.json
 /public/storage
 /storage/*.key
+/storage/debugbar
 /vendor
 .env
 .env.backup
