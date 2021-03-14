@@ -6,6 +6,7 @@ use App\Article;
 use App\Comment;
 use App\Tag;
 use App\User;
+use App\Services\Search\SearchData;
 use App\Http\Requests\ArticleRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -14,39 +15,20 @@ use Exception;
 
 class ArticleController extends Controller
 {
-    // ArticlePolicyの使用
-    public function __construct()
+    private $client;
+
+    public function __construct(SearchData $searchData)
     {
+        $this->searchData = $searchData;
         $this->authorizeResource(Article::class, 'article');
     }
 
-    public function index(Request $request, User $user)
+    public function index(Request $request, Article $article)
     {
         // ユーザー投稿の検索機能
         $search = $request->input('search');
 
-        $query = Article::query();
-
-        // キーワードがあれば
-        if($search !== null) {
-            // 全角スペースを半角に
-            $search_split = mb_convert_kana($search, 's');
-
-            // 空白で区切る
-            $search_split2 = preg_split('/[\s]+/', $search_split,-1,PREG_SPLIT_NO_EMPTY);
-
-            // 単語をループで回す
-            foreach($search_split2 as $value)
-            {
-                $query->where('body', 'like', '%'.$value.'%');
-            }
-        };
-
-        // 投稿一覧を無限スクロールで表示
-
-        $articles = $query->with(['user', 'likes', 'tags'])
-            ->orderBy('created_at', 'desc')
-            ->paginate(10);
+        $articles = $this->searchData->searchKeyword($search, $article, $request);
 
         if ($request->ajax()) {
             return response()->json([
@@ -143,7 +125,7 @@ class ArticleController extends Controller
     }
 
     // 記事詳細表示
-    public function show(Article $article, Comment $comment)
+    public function show(Article $article, Comments $comments)
     {
         $comments = $article->comments()
         ->orderBy('created_at', 'desc')
