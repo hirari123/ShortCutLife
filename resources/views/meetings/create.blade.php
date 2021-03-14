@@ -12,13 +12,14 @@
     <div class="row">
       <div class="mx-auto col-md-7">
         <div class="card">
-          <h2 class="h4 card-header text-center blue-gradient text-white">練習概要を作成しよう!</h2>
+          <h2 class="h4 card-header text-center blue-gradient text-white">Zoomミーティングを作成しよう!</h2>
           <div class="card-body pt-3">
 
             @include('error_card_list')
 
             <div class="my-4">
               <form method="POST" action="{{ route('meetings.store') }}" class="w-75 mx-auto">
+                @csrf
 
                 @include('meetings.form')
 
