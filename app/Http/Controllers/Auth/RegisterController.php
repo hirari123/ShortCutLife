@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 class RegisterController extends Controller
 {
@@ -49,11 +50,20 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
-            'name' => ['required', 'string', 'min:3', 'max:16', 'unique:users'],
-            'email' => ['required', 'string', 'email', 'max:100', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
-        ]);
+        $messages = [
+            'regex' => ':attributeに「/」と半角スペースは使用できません。'
+        ];
+
+        return Validator::make(
+            $data, 
+            [
+                'name' => ['required', 'string', 'min:3', 'max:16', 'unique:users'],
+                'email' => ['required', 'string', 'email', 'max:100', 'unique:users'],
+                'password' => ['required', 'string', 'min:8', 'confirmed'],
+                'profile_image' => ['file', 'mimes:jpeg,png,jpg,bmb', 'max:2048'],
+            ],
+            $messages
+        );
     }
 
     /**
@@ -68,6 +78,7 @@ class RegisterController extends Controller
         // フラッシュメッセージ
         session()->flash('msg_success', 'ユーザー登録が完了しました');
 
+        // ユーザー情報の登録
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
