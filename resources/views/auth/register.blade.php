@@ -51,7 +51,7 @@
                     パスワード(確認用)
                     <small class="text-danger">(必須)</small>
                   </label>
-                  <input class="form-control" type="password" id="password-confirmation" name="password-confirmation" placeholder="※パスワードを再入力">
+                  <input class="form-control" type="password" id="password-confirmation" name="password_confirmation" placeholder="※パスワードを再入力">
                 </div>
 
                 <!-- 登録ボタン -->
