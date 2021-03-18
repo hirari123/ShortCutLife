@@ -21,4 +21,9 @@ class Meeting extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function findByMeetingId(int $meetingId): ?Meeting
+    {
+        return Meeting::where('meeting_id', $meetingId)->first ?? null;
+    }
 }
