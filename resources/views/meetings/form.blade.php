@@ -12,7 +12,7 @@
 <div class="form-group">
   <label for="agenda">
     テーマ
-    <small class="blue-grey-text">(任意)</small>
+    <small class="text-danger">(必須)</small>
   </label>
   <input type="text" class="form-control" id="agenda" name="agenda" value="{{ $meeting->agenda ?? old('agenda') }}">
 </div>
