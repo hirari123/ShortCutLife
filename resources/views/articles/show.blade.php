@@ -23,8 +23,9 @@
             @guest
             <li class="list-group-item text-center">
               <p class="mb-0">
+                <span class="text-muted">コメントをするには</span>
                 <a href="{{ route('login') }}">ログイン</a>
-                <span class="text-muted">しますとコメントができます。</span>
+                <span class="text-muted">をしてください。</span>
               </p>
             </li>
             @endguest
