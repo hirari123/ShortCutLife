@@ -59,7 +59,13 @@ class ZoomJwtClient
     return $this->zoomRequest('DELETE', $path, $query = [], $body);
   }
 
-  // Zoomミーティングへのリクエスト用のフォーマットに日付時刻を変換
+/**
+ * Zoomミーティングへのリクエスト用のフォーマットに、日付時刻を変換
+ * →　YYYY-MM-DD T HH:mm:ss
+ * @param string $dateTime
+ * @return string
+ */
+
   public function toZoomTimeFormat(string $dateTime): string
   {
     $dateTime = new CarbonImmutable($dateTime);
@@ -67,8 +73,14 @@ class ZoomJwtClient
     return $dateTime->format('Y-m-d\TH:i:s');
   }
 
-  // timezoneを元に、日付時刻を変換する
-  public function changeDateTimeForTimezone(string $dateTime, string $timezone): CarbonImmutable
+/**
+ * timezoneを元に、日付時刻を変換する
+ * @param string $dateTime
+ * @param string $timezone
+ * @return CarbonImmutable
+ */
+
+public function changeDateTimeForTimezone(string $dateTime, string $timezone): CarbonImmutable
   {
     $dateTime = new CarbonImmutable($dateTime);
     return $dateTime->setTimezone($timezone);
