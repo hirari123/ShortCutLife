@@ -33,7 +33,11 @@ class MeetingController extends Controller
         return $response;
     }
 
-    // 指定したミーティング情報の取得
+    /**
+     * 指定したミーティング情報の取得
+     * @param int $meetingId
+     */
+
     function getMeeting(int $meetingId)
     {
         $path = 'meetings/' . $meetingId;
@@ -42,8 +46,12 @@ class MeetingController extends Controller
         return $response;
     }
 
-    // 作成済みのミーティングの、「開始日」と「ステータス」をチェックし、過去のミーティングを削除する
-    function checkStartTimeAndStatusOfMeetings(): void
+    /**
+     * 作成済みのミーティングの、「開始日」と「ステータス」をチェックし、過去のミーティングを削除する
+     * @return void
+     */
+
+     function checkStartTimeAndStatusOfMeetings(): void
     {
         // 作成済みミーティングの情報を全件取得
         $response = $this->getListMeetings();
@@ -122,8 +130,8 @@ class MeetingController extends Controller
 
         // レスポンスのミーティング開始日時を日本時刻に変換する
         $body = json_decode($response->getBody(), true);
-        $body['start_time'] = $this->client->toUnixTimeStamp($body['start_time'], $body['timezone']);
-        $body['start_time'] = date('Y-m-d\TH:i:s', $body['start_time']);
+        $changedDateTime = $this->client->changeDateTimeForTimezone($body['start_time'], $body['timezone']);
+        $body['start_time'] = $changedDateTime->format('Y-m-d\TH:i');
 
         // 作成したミーティング情報をDBに保存
         if ($response->getStatusCode() === 201) { //201:ミーティング作成成功のHTTPステータスコード
