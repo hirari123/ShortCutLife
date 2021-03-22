@@ -33,8 +33,8 @@ class MeetingRequest extends FormRequest
     {
         return [
             'topic' => 'required|string|max:20',
-            'agenda' => 'required|date|after_or_equal:now',
-            'start_time' => 'string|max:20|nullable',
+            'start_time' => 'required|date|after_or_equal:now',
+            'agenda' => 'string|max:20|nullable',
         ];
     }
 
@@ -50,7 +50,7 @@ class MeetingRequest extends FormRequest
     public function zoomParams()
     {
         $validated = parent::validated();
-        $validated['type'] = self::MEETING_TYPE_SCHEDULE;
+        $validated['type'] = config('zoom.meeting_type.scheduled');
         $validated['timezone'] = config('app.timezone');
         $validated['start_time'] = $this->client->toZoomTimeFormat($validated['start_time']);
         return $validated;
