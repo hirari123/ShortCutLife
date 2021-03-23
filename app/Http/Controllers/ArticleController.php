@@ -125,7 +125,7 @@ class ArticleController extends Controller
     }
 
     // 記事詳細表示
-    public function show(Article $article, Comments $comments)
+    public function show(Article $article, Comment $comments)
     {
         $comments = $article->comments()
         ->orderBy('created_at', 'desc')
