@@ -140,7 +140,7 @@ class MeetingController extends Controller
                     $body +
                         [
                             'meeting_id' => $body['id'],
-                            'user_id' => $request->user()->id,
+                            'user_id' => $request->user()->id
                         ]
                     )
                 ->save();
