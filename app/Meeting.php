@@ -24,6 +24,6 @@ class Meeting extends Model
 
     public function findByMeetingId(int $meetingId): ?Meeting
     {
-        return Meeting::where('meeting_id', $meetingId)->first ?? null;
+        return Meeting::where('meeting_id', $meetingId)->first() ?? null;
     }
 }
