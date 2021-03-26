@@ -6,14 +6,15 @@
       
       <div class="col-3 text-center">
         <a href="{{ route('users.show', ['name' => $user->name]) }}" class="text-dark">
-          <i class="fas fa-user-circle fa-8x"></i>
+          <img class="profile-icon rounded-circle" src="{{ $user->profile_image }}" alt="プロフィールアイコン">
+          <!-- <i class="fas fa-user-circle fa-8x"></i> -->
         </a>
       </div>
 
       <div class="col-9">
         <div class="row mb-2">
           <div class="col-5">
-            <h2 class="h5 card-title pt-3 font-weight-bold">
+            <h2 class="h5 card-title mb-3 font-weight-bold">
               <a href="{{ route('users.show', ['name' => $user->name]) }}" class="text-dark">
                 {{ $user->name }}
               </a>
@@ -39,6 +40,15 @@
             </div>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-10 pr-0">
+              @if (isset($user->self_introduction))
+                <p class="mb-0">{!! nl2br(e( $user->self_introduction )) !!}</p>
+              @endif
+          </div>
+        </div>
+        
       </div>
 
     </div>
