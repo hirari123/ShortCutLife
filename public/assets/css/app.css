@@ -10175,6 +10175,7 @@ body a {
   top: 30%;
   left: 10%;
   margin: auto;
+  z-index: -9000;
 }
 
 .top-text {
@@ -10182,7 +10183,7 @@ body a {
   color: #fff;
   font-size: 30px;
   letter-spacing: 0.4rem;
-  z-index: 9000;
+  z-index: -9000;
 }
 
 .main-images {
@@ -10204,6 +10205,7 @@ body a {
   top: 30%;
   left: 10%;
   margin: auto;
+  z-index: -9000;
 }
 
 .main-text {
@@ -10211,7 +10213,7 @@ body a {
   color: #fff;
   font-size: 30px;
   letter-spacing: 0.4rem;
-  z-index: 9000;
+  z-index: -9000;
 }
 
 .container .practice-title {
