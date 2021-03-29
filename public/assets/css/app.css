@@ -10156,6 +10156,10 @@ body a {
   background-color: #fffde7;
 }
 
+.title-nav {
+  z-index: 9999;
+}
+
 .top-images {
   position: relative;
   margin: 0 auto;
