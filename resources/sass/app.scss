@@ -40,6 +40,7 @@ body {
   position: relative;
   margin: 0 auto;
   text-align: center;
+  z-index: 1000;
 }
 
 .top-bg-img {
@@ -48,6 +49,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   height: $L-size;
+  z-index: 1000;
 }
 
 .top-inner {
@@ -55,7 +57,7 @@ body {
   top: 30%;
   left: 10%;
   margin: auto;
-  z-index: -9000;
+  z-index: 2000;
 }
 
 .top-text {
@@ -63,13 +65,14 @@ body {
   color: #fff;
   font-size: 30px;
   letter-spacing: 0.4rem;
-  z-index: -9000;
+  z-index: 2000;
 }
 
 .main-images {
   position: relative;
   margin: 0 auto;
   text-align: center;
+  z-index: 1000;
 }
 
 .main-bg-img {
@@ -78,6 +81,7 @@ body {
   background-repeat: no-repeat;
   background-position: center;
   height: $L-size;
+  z-index: 1000;
 }
 
 .main-inner {
@@ -85,7 +89,7 @@ body {
   top: 30%;
   left: 10%;
   margin: auto;
-  z-index: -9000;
+  z-index: 2000;
 }
 
 .main-text {
@@ -93,7 +97,7 @@ body {
   color: #fff;
   font-size: 30px;
   letter-spacing: 0.4rem;
-  z-index: -9000;
+  z-index: 2000;
 }
 
 .container {
