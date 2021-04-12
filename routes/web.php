@@ -74,4 +74,8 @@ Route::group(['middleware' => 'auth'], function() {
   Route::resource('/meetings', 'Zoom\MeetingController')->only('store')->middleware('throttle:5, 1');
   Route::resource('/meetings', 'Zoom\MeetingController')->except('store');
 
+  // 画像関連
+  Route::get('/form', 'UploadImageController@show')->name('upload_form');
+  Route::post('/upload', 'UploadImageController@upload')->name('upload_image');
+
 });
