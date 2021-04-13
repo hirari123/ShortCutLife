@@ -1,0 +1,39 @@
+$L-size: 150px;
+$M-size: 60px;
+$S-size: 30px;
+
+
+.profile-icon {
+  width: $L-size;
+  height: $L-size;
+  object-fit: cover;
+}
+
+.user-icon {
+  width: $M-size;
+  height: $M-size;
+  object-fit: cover;
+}
+
+.user-mini-icon {
+  width: $S-size;
+  height: $S-size;
+  object-fit: cover;
+}
+
+.user-form {
+  margin: auto;
+  width: 60%;
+}
+
+.image-upload:hover {
+  @include link-hover;
+}
+
+::placeholder {
+  font-size: 85%;
+}
+
+input[type="time"] {
+  width: 40%;
+}
