@@ -7,7 +7,6 @@
       <div class="col-3 text-center">
         <a href="{{ route('users.show', ['name' => $user->name]) }}" class="text-dark">
           <img class="profile-icon rounded-circle" src="{{ $user->profile_image }}" alt="プロフィールアイコン">
-          <!-- <i class="fas fa-user-circle fa-8x"></i> -->
         </a>
       </div>
 

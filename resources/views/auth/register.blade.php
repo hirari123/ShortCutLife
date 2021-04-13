@@ -54,6 +54,14 @@
                   <input class="form-control" type="password" id="password-confirmation" name="password_confirmation" placeholder="※パスワードを再入力">
                 </div>
 
+                <div class="form-group">
+                  <label for="profile_image">
+                    プロフィール画像
+                    <small class="blue-grey-text">(任意)</small>
+                  </label>
+                  <input type="file" id="profile_image" name="profile_image" accept="image/*">
+                </div>
+
                 <!-- 登録ボタン -->
                 <button type="submit" class="btn rounded-pill btn-block purple-gradient">
                   <span class="h6">ユーザー登録</span>

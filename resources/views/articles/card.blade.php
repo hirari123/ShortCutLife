@@ -2,8 +2,8 @@
 
 <div class="card mt-3">
   <div class="card-header card_color text-dark py-2 d-flex bd-highlight">
-    <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
-      <i class="fas fa-user-circle fa-3x mr-1 pr-2 bd-highlight"></i>
+    <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="in-link text-dark">
+      <img class="user-icon rounded-circle" src="{{ $article->user->profile_image }}">
     </a>
     <div class="font-weight-bold mt-3 bd-highlight">
       <a href="{{ route('users.show', ['name' => $article->user->name]) }}" class="text-dark">
