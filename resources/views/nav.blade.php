@@ -5,6 +5,8 @@
     CHOT PLAY
     </a>
 
+    @include('hamburger_menu')
+
     @if (isset($articles))
       <form method="GET" action="{{ route('articles.index') }}" class="search-form form-inline w-25 d-none d-md-flex">
         <span></span>
@@ -19,7 +21,7 @@
       <!-- 検索フォームを表示しない -->
     @endif
 
-    <ul class="navbar-nav ml-auto">
+    <ul class="navbar-nav ml-auto d-none d-md-flex align-items-center">
 
       @guest
       <li class="nav-item">
