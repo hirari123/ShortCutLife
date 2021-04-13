@@ -11,11 +11,13 @@
 @import "component.scss";
 @import "meeting.scss";
 @import "sidebar.scss";
+@import "user.scss";
+@import "pagination.scss";
+@import "hamburger_menu.scss";
 
 $L-size: 500px;
 
 body {
-  background-color: #f1f8e9;
   padding-top: 50px;
 
   a {
@@ -34,6 +36,7 @@ body {
 
 .title-nav {
   z-index: 9999;
+  background-color: #f1f8e9;
 }
 
 .top-images {
