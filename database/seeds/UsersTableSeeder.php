@@ -60,6 +60,7 @@ class UsersTableSeeder extends Seeder
                 'name' => $faker->unique()->name,
                 'email' => Str::random(10) . '@gmail.com',
                 'password' => Hash::make('password'),
+                'profile_image' => 'default.png',
                 'remember_token' => Str::random(10),
                 'created_at' => now(),
                 'updated_at' => now(),
