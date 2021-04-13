@@ -19,10 +19,20 @@
               <form method="POST" action="{{ route('users.update', ['name' => $user->name]) }}" enctype="multipart/form-data">
                 @method('PATCH')
                 @csrf
+                <div class="form-group text-center">
+                  <label for="profile-image">
+                    <p class="mb-1">プロフィール画像</p>
+                    <img src="{{ $user->profile_image }}" alt="プロフィールアイコン" class="profile-icon image-upload rounded-circle">
+                    @if (Auth::id() != config('user.guest_user_id'))
+                      <input type="file" name="profile_image" id="profile_image" class="d-none" accept="image/*">
+                    @endif
+                  </label>
+                </div>
 
-                @if (Auth::id() == config('usr.guest_user_id'))
+                @if (Auth::id() == config('user.guest_user_id'))
                   <p class="text-danger">
                     <b>※ゲストユーザーは、以下を編集できません。</b><br>
+                    ・アイコン画像<br>
                     ・ユーザー名<br>
                     ・メールアドレス<br>
                   </p>
