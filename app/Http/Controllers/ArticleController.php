@@ -64,15 +64,14 @@ class ArticleController extends Controller
         // 二重送信の対策
         $request->session()->regenerateToken();
 
-        // モデルの新規登録
-        $article->fill($request->all());
-        $article->user_id = $request->user()->id;
-        // araticlesテーブルにレコードを新規登録
-        $article->save();
-        // タグの登録と記事・タグの紐付け
-        $request->tags->each(function($tagName) use ($article) {
-            $tag = Tag::firstOrCreate(['name' => $tagName]);
-            $article->tags()->attach($tag);
+        DB::transaction(function() use ($request, $article) {
+            $user = $request->user();
+            $article = $user->articles()->create($request->validated());
+            // タグの登録と記事・タグの紐付け
+            $request->tags->each(function($tagName) use ($article) {
+                $tag = Tag::firstOrCreate(['name' => $tagName]);
+                $article->tags()->attach($tag);
+            });
         });
 
         return redirect()->route('articles.index');
