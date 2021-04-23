@@ -97,3 +97,7 @@ URL：
     + 投稿、編集、削除、ログイン、ログアウト時にフラッシュメッセージを表示
 
 + 画像アップロード機能(AWS S3バケット)
+
+## DB設計
+
+![CHOT_PLAY_ERD](https://user-images.githubusercontent.com/54095995/115883843-3618c580-a489-11eb-848f-73a56bd05bc1.png)
