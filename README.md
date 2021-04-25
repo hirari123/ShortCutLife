@@ -56,7 +56,7 @@ URL：
     + Docker 19.03.13/ docker-compose 1.27.4
     + nginx 1.18
     + MySQL 8.0
-    + AWS()
+    + AWS(VPC, EC2, )
 
 + その他使用ツール
     + Visual Studio Code
