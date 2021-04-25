@@ -77,5 +77,6 @@ Route::group(['middleware' => 'auth'], function() {
   // 画像関連
   Route::get('/form', 'UploadImageController@show')->name('upload_form');
   Route::post('/upload', 'UploadImageController@upload')->name('upload_image');
+  Route::get('/list', 'ImageListController@show')->name('image_list');
 
 });
