@@ -34,6 +34,14 @@ class UserController extends Controller
             ]);
         }
 
+        // アップロードした画像を取得
+        $uploads = UploadImage::orderBy('id', 'desc')->get();
+        
+        return view('image_list', [
+            'images' => $uploads
+        ]);
+
+
         return view('users.show', [
             'user' => $user,
             'articles' => $articles,
