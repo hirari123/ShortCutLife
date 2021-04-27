@@ -18,7 +18,7 @@ class CreateLikesTable extends Migration
             $table->unsignedBigInteger('user_id')->comment('ユーザーID');
                 $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('article_id')->comment('投稿ID');
-            $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
+                $table->foreign('article_id')->references('id')->on('articles')->onDelete('cascade');
             $table->timestamps();
         });
     }
