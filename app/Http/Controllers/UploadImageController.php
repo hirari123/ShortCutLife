@@ -13,7 +13,7 @@ class UploadImageController extends Controller
 
     function upload(Request $request) {
         $request->validate([
-            'image' => 'require|file|image|mimes:png,jpeg'
+            'image' => 'required|file|image|mimes:png,jpeg'
         ]);
 
         $upload_image = $request->file('image');
