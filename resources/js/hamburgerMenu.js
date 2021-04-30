@@ -7,10 +7,10 @@ $(function() {
   $btn.on('click', function() {
     if ($(this).hasClass('active')){
       $(this).removeClass('active');
-      $('.menu-area').slideUp();
+      $menu.slideUp();
     } else {
       $(this).addClass('active');
-      $('.menu-area').slideDown();
+      $menu.slideDown();
     }
     return false;
   });
