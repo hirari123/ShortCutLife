@@ -50,7 +50,7 @@
     </li>
 
     <li>
-      <a onclick="location.href='{{ route("users.show", ["name" => Auth::user()->name]) }}'" class="waves-effect waves-light modal-link">
+      <a class="waves-effect waves-light modal-link" onclick="location.href='{{ route("users.show", ["name" => Auth::user()->name]) }}'" >
       <i class="fas fa-user mr-1"></i>
         マイページ
       </a>
