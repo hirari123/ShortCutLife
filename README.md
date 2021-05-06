@@ -4,7 +4,7 @@
 <img width="1440" alt="スクリーンショット 2021-04-01 9 37 29" src="https://user-images.githubusercontent.com/54095995/113227693-3c72b200-92ce-11eb-8025-608781cc189e.png">
 
 
-URL：
+URL：　現在開発中です
 
 ## アプリ概要
 こちらのアプリのコンセプトは以下の2点です。
@@ -40,6 +40,26 @@ URL：
 
 ## 使用画面のイメージ
 
+### 新規登録
+
+![create](https://user-images.githubusercontent.com/54095995/117267328-2047cf00-ae91-11eb-96a8-728c9438bc90.gif)
+
+### ログイン、ログアウト
+
+![login_logout](https://user-images.githubusercontent.com/54095995/117267914-bb40a900-ae91-11eb-82bb-68f3d2c9babb.gif)
+
+### 練習日設定
+
+![practice_create](https://user-images.githubusercontent.com/54095995/117269996-bbda3f00-ae93-11eb-9e90-a8627c868ed6.gif)
+
+### いいね機能
+
+![iine](https://user-images.githubusercontent.com/54095995/117270625-5f2b5400-ae94-11eb-9258-58b796930efe.gif)
+
+### コメント機能
+
+![comment](https://user-images.githubusercontent.com/54095995/117271210-ebd61200-ae94-11eb-801e-46649a6b6054.gif)
+
 ## 使用技術
 
 + フロントエンド
@@ -50,19 +70,17 @@ URL：
 + バックエンド
     + PHP 7.4.12
     + Laravel 6.20.16
-    + ZoomAPI(guzzelehttp/guzzel 7.2.0)
+    + ZoomAPI(guzzelehttp/guzzel 7.2.0)(使用予定です)
 
 + インフラ
     + Docker 19.03.13/ docker-compose 1.27.4
     + nginx 1.18
     + MySQL 8.0
-    + AWS(VPC, EC2, )
+    + AWS(現在開発中です)
 
 + その他使用ツール
     + Visual Studio Code
     + draw.io
-
-## AWS構成図
 
 ## 機能一覧
 
@@ -71,12 +89,6 @@ URL：
     + プロフィール編集機能
     + ログイン、ログアウト機能
     + かんたんログイン機能（ゲストログイン）
-
-+ ZoomAPI連携
-    + 発表練習Zoomミーティング機能(CRUD)
-        + ミーティングの新規作成
-        + 一覧表示
-        + 編集、削除機能
 
 + ページネーション機能
     + コメント一覧
@@ -96,8 +108,11 @@ URL：
 + フラッシュメッセージ表示機能(jQuery/Toastr)
     + 投稿、編集、削除、ログイン、ログアウト時にフラッシュメッセージを表示
 
-+ 画像アップロード機能(AWS S3バケット)
 
 ## DB設計
 
 ![CHOT_PLAY_ERD](https://user-images.githubusercontent.com/54095995/115883843-3618c580-a489-11eb-848f-73a56bd05bc1.png)
+
+
+
+#### 随時機能を追加していきます。
